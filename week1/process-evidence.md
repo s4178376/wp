@@ -20,33 +20,33 @@ You must maintain this file throughout development.
 # 🔧 Section 1: Debugging Records
 
 ## Bug 1
-
+HTML tag issue
 **Date Identified:**  
-15/07/2026
+28/07/2026
 
 **Date Fixed:**  
-15/07/2026
+28/07/2026
 
 **File:**  
 index.html
 
 **Related Commit:**  
-(e.g., abc1234)
+(https://github.com/s4178376/wp/commit/387ef6a0d4523715d9b254611887252df8b0980d)
 
 **Symptom:**  
-What went wrong?
+Page Layout looks incorrect
 
 **Steps to Reproduce:**  
-How can the issue be triggered?
+View in the browser
 
 **Root Cause:**  
-Why did the issue occur?
+Heading tag was mismatched
 
 **Fix:**  
-What did you change?
+Corrected Closing tag
 
 **Verification:**  
-How did you confirm the fix?
+Page displays correctly after refresh
 
 ---
 
