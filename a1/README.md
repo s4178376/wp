@@ -5,8 +5,8 @@
 
 | Item | Details |
 |---|---|
-| Student name | TODO |
-| Student ID | TODO |
+| Student name | Seth Nightingale |
+| Student ID | s4178376 |
 | GitHub repository URL | TODO |
 | Deployed website URL | TODO |
 

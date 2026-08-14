@@ -1,0 +1,140 @@
+:root {
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #14b8a6;
+  --secondary: #d97706;
+  --secondary-dark: #b45309;
+  --accent-amber: #fbbf24;
+  --accent-green: #10b981;
+  --accent-slate: #475569;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --background: #f9fafb;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+[data-bs-theme="dark"] {
+  --text-dark: #f3f4f6;
+  --text-light: #cbd5e1;
+  --background: #111827;
+  --surface: #1f2937;
+  --border: #374151;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-dark);
+  background: var(--background);
+  font-family: "Elms Sans", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: "Righteous", sans-serif;
+}
+
+.navbar-bookverse {
+  background: var(--primary-dark);
+  border-bottom: 4px solid var(--secondary);
+}
+
+.navbar-bookverse .navbar-brand,
+.navbar-bookverse .nav-link {
+  color: #fff;
+}
+
+.navbar-bookverse .nav-link:hover,
+.navbar-bookverse .nav-link:focus,
+.navbar-bookverse .nav-link.active {
+  color: var(--accent-amber);
+}
+
+.brand-icon { color: var(--accent-amber); }
+.nav-icon { font-size: 1rem; vertical-align: -0.15rem; }
+
+.theme-select {
+  width: auto;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.theme-select:focus { border-color: var(--accent-amber); box-shadow: none; }
+.theme-select option { color: #111827; background: #fff; }
+
+main { flex: 1; }
+
+.page-wrap { padding-top: 3.5rem; padding-bottom: 4rem; }
+.section-title { margin-bottom: 1.5rem; }
+.section-title .material-icons { color: var(--primary); vertical-align: -0.25rem; }
+
+.hero-carousel .carousel-item { height: 320px; }
+.hero-carousel img { width: 100%; height: 100%; object-fit: cover; }
+.hero-carousel .carousel-caption { text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9); }
+
+.book-card,
+.content-panel,
+.gallery-modal .modal-content {
+  color: var(--text-dark);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.book-card { height: 100%; overflow: hidden; transition: transform 0.2s ease; }
+.book-card:hover { transform: translateY(-3px); }
+.book-card img { height: 250px; object-fit: cover; }
+.book-card .card-title { font-size: 1rem; }
+.book-meta { color: var(--text-light); font-size: 0.78rem; }
+
+.badge-available { background: var(--accent-green); }
+.badge-reserved { background: var(--secondary); }
+.badge-sold { background: var(--accent-slate); }
+
+.books-table { margin-bottom: 0; color: var(--text-dark); }
+.books-table > :not(caption) > * > * { padding: 1rem; background: var(--surface); border-color: var(--border); }
+.filter-panel { padding: 1rem; margin-bottom: 1.5rem; }
+
+.gallery-item {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-radius: 0.6rem;
+  box-shadow: var(--shadow);
+}
+
+.gallery-item img { width: 100%; aspect-ratio: 1 / 1.12; object-fit: cover; transition: transform 0.2s ease; }
+.gallery-item:hover img, .gallery-item:focus img { transform: scale(1.04); }
+.gallery-modal .modal-header { color: #fff; background: var(--primary); }
+.gallery-modal .modal-body img { width: 100%; max-height: 65vh; object-fit: contain; }
+
+.form-panel { max-width: 760px; padding: 2rem; margin: auto; }
+.form-panel-wrap { max-width: 760px; margin: auto; }
+.form-label { font-weight: 600; }
+.form-control, .form-select { color: var(--text-dark); background-color: var(--surface); border-color: var(--border); }
+.form-control::placeholder { color: var(--text-light); }
+.image-preview { display: none; max-width: 220px; max-height: 280px; margin-top: 1rem; border: 2px solid var(--border); border-radius: 0.5rem; }
+.image-preview.is-visible { display: block; }
+.btn-bookverse { color: #fff; background: var(--primary); border-color: var(--primary); }
+.btn-bookverse:hover, .btn-bookverse:focus { color: #fff; background: var(--primary-dark); border-color: var(--primary-dark); }
+
+.site-footer {
+  padding: 1rem;
+  color: #fff;
+  text-align: center;
+  background: var(--primary-dark);
+  border-top: 4px solid var(--secondary);
+}
+
+@media (max-width: 767.98px) {
+  .hero-carousel .carousel-item { height: 230px; }
+  .page-wrap { padding-top: 2rem; }
+  .book-card img { height: 220px; }
+  .theme-select { margin-top: 0.75rem; }
+}

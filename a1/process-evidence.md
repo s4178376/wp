@@ -77,31 +77,31 @@ How did you confirm the fix?
 ## AI Task 1
 
 **Date:**  
-(e.g., 15/03/2026)
+14/08/2026
 
 **Task Description:**  
-What were you trying to do?
+Interpret the assessment brief and create the first functional BookVerse implementation from the supplied starter package.
 
 **Tool Used:**  
-(e.g., GitHub Copilot, ChatGPT)
+ChatGPT (Codex Work mode)
 
 **Prompt / Input:**  
-(What did you type?)
+I supplied the complete assessment brief, rubric, reference screenshots and starter `a1.zip`. I specified student ID `s4178376` and requested both Default Light and Default Dark modes.
 
 **AI Output Summary:**  
-(What did it generate?)
+The AI mapped the requirements to four pages and produced semantic HTML, a shared Bootstrap-based layout, an external stylesheet, and a consolidated JavaScript file. It also implemented the carousel, status filtering with `data-status`, gallery modal, add-book validation, image preview and theme selection.
 
 **What You Accepted:**  
-(Which parts did you keep?)
+I accepted the required file structure, semantic layout, supplied colour palette, Bootstrap components and the separation of HTML, CSS and JavaScript.
 
 **What You Changed:**  
-(What did you modify and why?)
+To be completed after I personally review and adapt this first implementation. The related commit URL will also be added after this stage is committed.
 
 **Validation Performed:**  
-How did you test correctness?
+Initial automated checks were run for local asset references, HTML structure and JavaScript syntax. Browser testing, W3C validation and deployed-server testing still need to be recorded.
 
 **Issues Identified:**  
-(Any errors or problems in AI output?)
+The assessment rubric contained reused status wording (`Available/Pending/Adopted`). I rejected that wording and followed the detailed BookVerse requirement: `Available`, `Reserved` and `Sold`.
 
 ---
 
