@@ -1,19 +1,24 @@
 "use strict";
 
+applySavedTheme(); // Apply saved theme on page load
+// this will be made to toggle based on browser preference in the future
+
 document.addEventListener("DOMContentLoaded", () => {
-  initialiseTheme();
+  initialiseTheme(); // initialise theme selector
   initialiseBookFilter();
   initialiseGalleryModal();
   initialiseBookForm();
 });
 
-function initialiseTheme() {
-  const selector = document.querySelector("#theme-select");
+function applySavedTheme() {
   const savedTheme = localStorage.getItem("bookverse-theme") || "light";
   document.documentElement.setAttribute("data-bs-theme", savedTheme);
+}
 
+function initialiseTheme() {
+  const selector = document.querySelector("#theme-select");
   if (!selector) return;
-  selector.value = savedTheme;
+  selector.value = document.documentElement.getAttribute("data-bs-theme");
   selector.addEventListener("change", () => {
     document.documentElement.setAttribute("data-bs-theme", selector.value);
     localStorage.setItem("bookverse-theme", selector.value);

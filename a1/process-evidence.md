@@ -22,31 +22,31 @@ You must maintain this file throughout development.
 ## Bug 1
 
 **Date Identified:**  
-(e.g., 15/03/2026)
+16/08/2026
 
 **Date Fixed:**  
-(e.g., 15/03/2026)
+17/08/2026
 
 **File:**  
-(e.g., about.html)
+`assets/js/scripts.js`, `index.html`, `books.html`, `gallery.html`, `add.html`
 
 **Related Commit:**  
-(e.g., abc1234)
+Pending — add the commit hash and GitHub URL after committing today's changes.
 
 **Symptom:**  
-What went wrong?
+When Dark mode was saved, a newly loaded page initially declared itself as Light mode and only changed to Dark after the page finished loading. This could display a brief light-coloured flash during refresh or navigation.
 
 **Steps to Reproduce:**  
-How can the issue be triggered?
+Select `Default Dark`, refresh the page or follow a navigation link, and inspect the initial page state before the `DOMContentLoaded` handler runs.
 
 **Root Cause:**  
-Why did the issue occur?
+Every page used `data-bs-theme="light"` in its opening HTML element, while the saved theme was not read until the custom script at the end of the body executed after the document loaded.
 
 **Fix:**  
-What did you change?
+I added `applySavedTheme()` at the beginning of the shared external JavaScript file and moved that single script reference into the head of every page. It now applies the saved theme before the body renders, while the remaining page functions still initialise on `DOMContentLoaded`.
 
 **Verification:**  
-How did you confirm the fix?
+I checked that all four pages load `assets/js/scripts.js` exactly once in the head, confirmed the file passes `node --check`, and confirmed that no inline JavaScript was introduced. A final manual browser refresh test will be repeated before submission.
 
 ---
 
@@ -109,21 +109,29 @@ The assessment rubric contained reused status wording (`Available/Pending/Adopte
 
 **Date:**  
 
+
 **Task Description:**  
+
 
 **Tool Used:**  
 
+
 **Prompt / Input:**  
+
 
 **AI Output Summary:**  
 
+
 **What You Accepted:**  
+
 
 **What You Changed:**  
 
 **Validation Performed:**  
 
+
 **Issues Identified:**  
+
 
 ---
 
