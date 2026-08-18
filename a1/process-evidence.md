@@ -53,22 +53,31 @@ I checked that all four pages load `assets/js/scripts.js` exactly once in the he
 ## Bug 2
 
 **Date Identified:**  
+18/08/2026
 
 **Date Fixed:**  
+18/08/2026
 
 **File:**  
+`assets/css/style.css`
 
 **Related Commit:**  
+Pending — add the commit hash and GitHub URL after committing today's changes.
 
 **Symptom:**  
+The white text on the bright Available and Reserved badge backgrounds had insufficient colour contrast, making the status labels harder to read and weakening accessibility.
 
 **Steps to Reproduce:**  
+Open `index.html` or `books.html`, inspect an Available or Reserved badge, and calculate the contrast between its white text and configured background colour.
 
 **Root Cause:**  
+The badges directly used the bright `#10b981` accent green and `#d97706` secondary orange as backgrounds. These colours are useful accents but are too light for small white text.
 
 **Fix:**  
+I changed the Available badge to a darker green (`#047857`) and used the supplied secondary-dark colour (`#b45309`) for Reserved. Sold continues to use the supplied slate colour. All badges explicitly use white text.
 
 **Verification:**  
+I calculated contrast ratios of 5.48:1 for Available, 5.02:1 for Reserved and 7.58:1 for Sold against white. Each exceeds the WCAG 4.5:1 target for normal text.
 
 ---
 
@@ -107,31 +116,36 @@ The assessment rubric contained reused status wording (`Available/Pending/Adopte
 
 ## AI Task 2
 
-**Date:**  
+---
 
+## AI Task 3
+
+**Date:**  
+18/08/2026
 
 **Task Description:**  
-
+Improve the Add Book form validation and accessibility during the third development-day review.
 
 **Tool Used:**  
-
+ChatGPT (Codex Work mode)
 
 **Prompt / Input:**  
-
+“we can smash through the next step now” together with the current BookVerse files and the rubric requirements for client-side validation, usability and valid code.
 
 **AI Output Summary:**  
-
+The AI reviewed the existing CSS, form markup and JavaScript. It identified low badge contrast and proposed accessible focus indicators, reduced-motion support, an `aria-live` image status, dynamic preview alternative text and focus movement to the first invalid field.
 
 **What You Accepted:**  
-
+I accepted changes that directly support the rubric: improved contrast, keyboard focus visibility, screen-reader feedback and clearer invalid-form navigation.
 
 **What You Changed:**  
+I kept the supplied teal and amber design and used darker matching shades only where needed for readable badge text. The screen-reader status was visually hidden so the required screenshot layout was not altered.
 
 **Validation Performed:**  
-
+I ran a JavaScript syntax check, searched for the new ARIA relationships and keyboard-focus code, confirmed that no inline code was introduced, and calculated the three badge contrast ratios.
 
 **Issues Identified:**  
-
+The original bright green and orange badge backgrounds did not provide sufficient contrast with small white text. The initial form also relied mainly on visual feedback, so assistive-technology announcements were added.
 
 ---
 

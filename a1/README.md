@@ -160,33 +160,35 @@ Book status filter	books.html	TODO
 
 ## 10. Form Validation
 
-Describe the validation that should be used on the Add Book form.
+Every field in `add.html` is mandatory and each control is connected to a visible
+`label` using matching `for` and `id` values. Appropriate types and constraints
+are used, including number inputs for publication year and price, minimum and
+maximum values, a price step of `0.01`, and an ISBN pattern. The agreement uses
+a required checkbox.
 
-TODO: Explain:
-
-which fields are required;
-how labels are associated with form fields;
-which input types were used;
-how the image file type is checked;
-which image file extensions are accepted;
-how the image preview works;
-what feedback the user receives if the selected file is invalid.
+The shared JavaScript reads the selected cover filename, extracts its extension
+and compares it with the allowed `jpg`, `jpeg`, `png`, `gif` and `webp` list. An
+invalid extension sets a custom validation message and does not create a
+preview. A valid file is read with `FileReader` and displayed locally without
+uploading it. Image selection results are announced through an `aria-live`
+status, and an invalid submission moves keyboard focus to the first invalid
+field. A valid submission only displays a Stage 1 confirmation because this is
+a static website.
 
 ## 11. Accessibility and Usability
 
-Briefly describe what accessibility and usability features must be implemented.
+All pages use unique titles and semantic `header`, `nav`, `main` and `footer`
+elements. Images have meaningful alternative text, form controls have labels,
+the current navigation link uses `aria-current`, decorative icons are hidden
+from assistive technology, and the gallery modal has an accessible name and
+close control. Keyboard users receive strong visible focus indicators.
 
-TODO: Mention relevant items such as:
-
-meaningful page titles;
-semantic HTML;
-form labels;
-image alt text;
-consistent navigation;
-readable text;
-colour contrast;
-responsive layout;
-clear user feedback.
+The interface uses consistent navigation, responsive Bootstrap grids and a
+scrollable table container for smaller screens. Status badge colours achieve at
+least a 4.5:1 contrast ratio with their white text. The stylesheet also respects
+the user's reduced-motion preference. Form errors use Bootstrap feedback,
+invalid submission focus, and a screen-reader announcement for cover-image
+validation and preview results.
 
 ## 12. Testing and Validation
 

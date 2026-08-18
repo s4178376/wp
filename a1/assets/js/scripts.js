@@ -1,10 +1,9 @@
 "use strict";
 
-applySavedTheme(); // Apply saved theme on page load
-// this will be made to toggle based on browser preference in the future
+applySavedTheme();
 
 document.addEventListener("DOMContentLoaded", () => {
-  initialiseTheme(); // initialise theme selector
+  initialiseTheme();
   initialiseBookFilter();
   initialiseGalleryModal();
   initialiseBookForm();
@@ -60,7 +59,8 @@ function initialiseBookForm() {
   const imageInput = document.querySelector("#image-path");
   const preview = document.querySelector("#image-preview");
   const feedback = document.querySelector("#image-feedback");
-  if (!form || !imageInput || !preview || !feedback) return;
+  const imageStatus = document.querySelector("#image-status");
+  if (!form || !imageInput || !preview || !feedback || !imageStatus) return;
 
   const allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
 
@@ -68,15 +68,21 @@ function initialiseBookForm() {
     const file = imageInput.files[0];
     preview.classList.remove("is-visible");
     preview.removeAttribute("src");
+    preview.alt = "Preview of selected book cover";
     imageInput.setCustomValidity("");
+    imageInput.classList.remove("is-invalid");
 
-    if (!file) return;
+    if (!file) {
+      imageStatus.textContent = "No cover image selected.";
+      return;
+    }
     const extension = file.name.split(".").pop().toLowerCase();
 
     if (!allowedExtensions.includes(extension)) {
       imageInput.setCustomValidity("Choose a JPG, JPEG, PNG, GIF or WEBP image.");
       feedback.textContent = "Only JPG, JPEG, PNG, GIF and WEBP files are accepted.";
       imageInput.classList.add("is-invalid");
+      imageStatus.textContent = `${file.name} was rejected because its file type is not allowed.`;
       return;
     }
 
@@ -84,7 +90,9 @@ function initialiseBookForm() {
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       preview.src = reader.result;
+      preview.alt = `Preview of ${file.name}`;
       preview.classList.add("is-visible");
+      imageStatus.textContent = `${file.name} is valid and its preview is displayed.`;
     });
     reader.readAsDataURL(file);
   });
@@ -94,6 +102,9 @@ function initialiseBookForm() {
     form.classList.add("was-validated");
     if (form.checkValidity()) {
       window.alert("Book details validated successfully. No data is submitted in Stage 1.");
+    } else {
+      const firstInvalidField = form.querySelector(":invalid");
+      if (firstInvalidField) firstInvalidField.focus();
     }
   });
 }
