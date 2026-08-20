@@ -1,69 +1,226 @@
 <!doctype html>
 <html lang="en" data-bs-theme="light">
 <head>
+  <!-- Required document metadata -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="BookVerse online bookstore home page and featured books.">
   <title>BookVerse | Home</title>
+
+  <!-- Favicon -->
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+
+  <!-- Google Fonts and Material Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:wght@400;500;600;700&family=Righteous&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Bootstrap and shared custom stylesheet -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Shared JavaScript applies the saved theme before the body renders -->
   <script src="assets/js/scripts.js"></script>
 </head>
+
 <body>
+  <!-- Shared site header and responsive navigation -->
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-bookverse" aria-label="Main navigation">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-1" href="index.html"><span class="material-icons brand-icon" aria-hidden="true">auto_stories</span>BookVerse</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <!-- Brand links back to the home page -->
+        <a class="navbar-brand d-flex align-items-center gap-1" href="index.html">
+          <span class="material-icons brand-icon" aria-hidden="true">auto_stories</span>
+          BookVerse
+        </a>
+
+        <!-- Mobile navigation toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
         <div class="collapse navbar-collapse" id="main-nav">
+          <!-- Shared navigation links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html"><span class="material-icons nav-icon" aria-hidden="true">home</span> Home</a></li>
             <li class="nav-item"><a class="nav-link" href="books.html"><span class="material-icons nav-icon" aria-hidden="true">menu_book</span> Browse Books</a></li>
             <li class="nav-item"><a class="nav-link" href="gallery.html"><span class="material-icons nav-icon" aria-hidden="true">photo_library</span> Gallery</a></li>
             <li class="nav-item"><a class="nav-link" href="add.html"><span class="material-icons nav-icon" aria-hidden="true">add_circle</span> Add Book</a></li>
           </ul>
+
+          <!-- JavaScript saves the selected light or dark theme -->
           <label class="visually-hidden" for="theme-select">Colour theme</label>
-          <select class="form-select form-select-sm theme-select" id="theme-select" aria-label="Colour theme"><option value="light">Default Light</option><option value="dark">Default Dark</option></select>
+          <select class="form-select form-select-sm theme-select" id="theme-select" aria-label="Colour theme">
+            <option value="light">Default Light</option>
+            <option value="dark">Default Dark</option>
+          </select>
         </div>
       </div>
     </nav>
   </header>
 
   <main>
+    <!-- Bootstrap carousel containing four supplied cover images -->
     <section aria-label="Featured book carousel">
       <div id="featured-carousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
-        <div class="carousel-indicators"><button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button><button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button><button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button><button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="3" aria-label="Slide 4"></button></div>
-        <div class="carousel-inner">
-          <div class="carousel-item active"><img src="assets/images/covers/1.png" alt="Fantasy library artwork"><div class="carousel-caption"><h1>The Midnight Library</h1></div></div>
-          <div class="carousel-item"><img src="assets/images/covers/2.png" alt="Astronaut floating in space"><div class="carousel-caption"><h2>Project Hail Mary</h2></div></div>
-          <div class="carousel-item"><img src="assets/images/covers/3.png" alt="Traveller crossing a desert"><div class="carousel-caption"><h2>Dune</h2></div></div>
-          <div class="carousel-item"><img src="assets/images/covers/4.png" alt="Hobbit home in a green hillside"><div class="carousel-caption"><h2>The Hobbit</h2></div></div>
+        <!-- Carousel position indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#featured-carousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
-        <button class="carousel-control-next" type="button" data-bs-target="#featured-carousel" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>
+
+        <!-- Carousel slides -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/images/covers/1.png" alt="Fantasy library artwork">
+            <div class="carousel-caption"><h1>The Midnight Library</h1></div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="assets/images/covers/2.png" alt="Astronaut floating in space">
+            <div class="carousel-caption"><h2>Project Hail Mary</h2></div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="assets/images/covers/3.png" alt="Traveller crossing a desert">
+            <div class="carousel-caption"><h2>Dune</h2></div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="assets/images/covers/4.png" alt="Hobbit home in a green hillside">
+            <div class="carousel-caption"><h2>The Hobbit</h2></div>
+          </div>
+        </div>
+
+        <!-- Previous and Next carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#featured-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#featured-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </section>
 
+    <!-- Responsive Bootstrap grid of featured books -->
     <section class="container page-wrap" aria-labelledby="featured-heading">
-      <h2 class="section-title" id="featured-heading"><span class="material-icons" aria-hidden="true">favorite</span> Featured Books</h2>
+      <h2 class="section-title" id="featured-heading">
+        <span class="material-icons" aria-hidden="true">favorite</span>
+        Featured Books
+      </h2>
+
       <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
-        <div class="col"><article class="card book-card"><img src="assets/images/covers/1.png" class="card-img-top" alt="Cover art for The Midnight Library"><div class="card-body"><h3 class="card-title">The Midnight Library</h3><p class="book-meta mb-1">Fiction · Matt Haig</p><p class="mb-2">$24.99</p><span class="badge badge-available">Available</span></div></article></div>
-        <div class="col"><article class="card book-card"><img src="assets/images/covers/2.png" class="card-img-top" alt="Cover art for Project Hail Mary"><div class="card-body"><h3 class="card-title">Project Hail Mary</h3><p class="book-meta mb-1">Science Fiction · Andy Weir</p><p class="mb-2">$28.99</p><span class="badge badge-available">Available</span></div></article></div>
-        <div class="col"><article class="card book-card"><img src="assets/images/covers/3.png" class="card-img-top" alt="Cover art for Dune"><div class="card-body"><h3 class="card-title">Dune</h3><p class="book-meta mb-1">Science Fiction · Frank Herbert</p><p class="mb-2">$22.99</p><span class="badge badge-available">Available</span></div></article></div>
-        <div class="col"><article class="card book-card"><img src="assets/images/covers/4.png" class="card-img-top" alt="Cover art for The Hobbit"><div class="card-body"><h3 class="card-title">The Hobbit</h3><p class="book-meta mb-1">Fantasy · J.R.R. Tolkien</p><p class="mb-2">$18.99</p><span class="badge badge-available">Available</span></div></article></div>
-        <div class="col"><article class="card book-card"><img src="assets/images/covers/5.png" class="card-img-top" alt="Cover art for 1984"><div class="card-body"><h3 class="card-title">1984</h3><p class="book-meta mb-1">Dystopian · George Orwell</p><p class="mb-2">$16.99</p><span class="badge badge-available">Available</span></div></article></div>
-        <div class="col"><article class="card book-card"><img src="assets/images/covers/6.png" class="card-img-top" alt="Cover art for Pride and Prejudice"><div class="card-body"><h3 class="card-title">Pride and Prejudice</h3><p class="book-meta mb-1">Romance · Jane Austen</p><p class="mb-2">$14.99</p><span class="badge badge-reserved">Reserved</span></div></article></div>
-        <div class="col"><article class="card book-card"><img src="assets/images/covers/7.png" class="card-img-top" alt="Cover art for To Kill a Mockingbird"><div class="card-body"><h3 class="card-title">To Kill a Mockingbird</h3><p class="book-meta mb-1">Fiction · Harper Lee</p><p class="mb-2">$19.99</p><span class="badge badge-available">Available</span></div></article></div>
-        <div class="col"><article class="card book-card"><img src="assets/images/covers/8.png" class="card-img-top" alt="Cover art for The Great Gatsby"><div class="card-body"><h3 class="card-title">The Great Gatsby</h3><p class="book-meta mb-1">Fiction · F. Scott Fitzgerald</p><p class="mb-2">$15.99</p><span class="badge badge-sold">Sold</span></div></article></div>
+        <div class="col">
+          <article class="card book-card">
+            <img src="assets/images/covers/1.png" class="card-img-top" alt="Cover art for The Midnight Library">
+            <div class="card-body">
+              <h3 class="card-title">The Midnight Library</h3>
+              <p class="book-meta mb-1">Fiction · Matt Haig</p>
+              <p class="mb-2">$24.99</p>
+              <span class="badge badge-available">Available</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="col">
+          <article class="card book-card">
+            <img src="assets/images/covers/2.png" class="card-img-top" alt="Cover art for Project Hail Mary">
+            <div class="card-body">
+              <h3 class="card-title">Project Hail Mary</h3>
+              <p class="book-meta mb-1">Science Fiction · Andy Weir</p>
+              <p class="mb-2">$28.99</p>
+              <span class="badge badge-available">Available</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="col">
+          <article class="card book-card">
+            <img src="assets/images/covers/3.png" class="card-img-top" alt="Cover art for Dune">
+            <div class="card-body">
+              <h3 class="card-title">Dune</h3>
+              <p class="book-meta mb-1">Science Fiction · Frank Herbert</p>
+              <p class="mb-2">$22.99</p>
+              <span class="badge badge-available">Available</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="col">
+          <article class="card book-card">
+            <img src="assets/images/covers/4.png" class="card-img-top" alt="Cover art for The Hobbit">
+            <div class="card-body">
+              <h3 class="card-title">The Hobbit</h3>
+              <p class="book-meta mb-1">Fantasy · J.R.R. Tolkien</p>
+              <p class="mb-2">$18.99</p>
+              <span class="badge badge-available">Available</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="col">
+          <article class="card book-card">
+            <img src="assets/images/covers/5.png" class="card-img-top" alt="Cover art for 1984">
+            <div class="card-body">
+              <h3 class="card-title">1984</h3>
+              <p class="book-meta mb-1">Dystopian · George Orwell</p>
+              <p class="mb-2">$16.99</p>
+              <span class="badge badge-available">Available</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="col">
+          <article class="card book-card">
+            <img src="assets/images/covers/6.png" class="card-img-top" alt="Cover art for Pride and Prejudice">
+            <div class="card-body">
+              <h3 class="card-title">Pride and Prejudice</h3>
+              <p class="book-meta mb-1">Romance · Jane Austen</p>
+              <p class="mb-2">$14.99</p>
+              <span class="badge badge-reserved">Reserved</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="col">
+          <article class="card book-card">
+            <img src="assets/images/covers/7.png" class="card-img-top" alt="Cover art for To Kill a Mockingbird">
+            <div class="card-body">
+              <h3 class="card-title">To Kill a Mockingbird</h3>
+              <p class="book-meta mb-1">Fiction · Harper Lee</p>
+              <p class="mb-2">$19.99</p>
+              <span class="badge badge-available">Available</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="col">
+          <article class="card book-card">
+            <img src="assets/images/covers/8.png" class="card-img-top" alt="Cover art for The Great Gatsby">
+            <div class="card-body">
+              <h3 class="card-title">The Great Gatsby</h3>
+              <p class="book-meta mb-1">Fiction · F. Scott Fitzgerald</p>
+              <p class="mb-2">$15.99</p>
+              <span class="badge badge-sold">Sold</span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </main>
-  <footer class="site-footer"><small>© 2026 s4178376, Seth Nightingale. Your Gateway to Books.</small></footer>
+
+  <!-- Shared footer required on every page -->
+  <footer class="site-footer">
+    <small>© 2026 s4178376, Seth Nightingale. Your Gateway to Books.</small>
+  </footer>
+
+  <!-- Bootstrap JavaScript bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
