@@ -22,7 +22,7 @@ You must maintain this file throughout development.
 ## Bug 1
 
 **Date Identified:**  
-16/08/2026
+17/08/2026
 
 **Date Fixed:**  
 17/08/2026
@@ -116,10 +116,6 @@ The assessment rubric contained reused status wording (`Available/Pending/Adopte
 
 ## AI Task 2
 
----
-
-## AI Task 3
-
 **Date:**  
 18/08/2026
 
@@ -146,6 +142,7 @@ I ran a JavaScript syntax check, searched for the new ARIA relationships and key
 
 **Issues Identified:**  
 The original bright green and orange badge backgrounds did not provide sufficient contrast with small white text. The initial form also relied mainly on visual feedback, so assistive-technology announcements were added.
+
 
 ---
 

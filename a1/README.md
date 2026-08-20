@@ -1,4 +1,4 @@
-# COSC2446 Web Programming – Assessment 1  
+# COSC2446 Web Programming – Assessment 1
 # BookVerse Online Bookstore Platform
 
 ## Student Details
@@ -7,97 +7,51 @@
 |---|---|
 | Student name | Seth Nightingale |
 | Student ID | s4178376 |
-| GitHub repository URL | TODO |
-| Deployed website URL | TODO |
+| GitHub repository URL | <https://github.com/s4178376/wp> |
+| Deployed website URL | Pending Coreteaching deployment |
 
----
+## 1. Project Overview
 
-## 1. Purpose of This README
-
-This README documents the Assessment 1 project and should be completed by the student.
-
-It is used to:
-
-- summarise the project;
-- explain the structure and technical choices;
-- document testing and deployment;
-- support marking of documentation and submission quality;
-- help AI tools such as GitHub Copilot follow the assessment requirements.
-
-TODO: After completing the project, update every TODO section in this file.
-
----
+BookVerse is a responsive static bookstore website that lets visitors browse a catalogue, filter books by availability, view cover artwork and validate a new book listing. It is designed for readers who want a simple visual catalogue and for users preparing book information for a future dynamic version. The site uses HTML5, CSS3, Bootstrap 5 and vanilla JavaScript. Assessment 1 does not store or submit form data because it is the static first stage of the platform.
 
 ## 2. Copilot and AI Coding Instructions
 
-This section must be completed by the student after reading the Assessment 1 brief.
+The following instructions were used to evaluate AI-assisted suggestions:
 
-Write clear instructions that would help GitHub Copilot or another AI tool produce code that follows the Assessment 1 requirements.
+- Use only HTML5, CSS3, Bootstrap 5 and vanilla JavaScript.
+- Do not add React, Vue, jQuery, server-side code, databases or build tools.
+- Keep `index.html`, `books.html`, `gallery.html` and `add.html`.
+- Use only `assets/css/style.css` and `assets/js/scripts.js` for custom code.
+- Do not use inline CSS, inline JavaScript or inline event handlers.
+- Use semantic `header`, `nav`, `main` and `footer` elements on every page.
+- Use Bootstrap rows, columns and responsive utilities for page layout.
+- Keep navigation, branding, themes and the footer consistent across pages.
+- Make every Add Book field required and connect every control to a label.
+- Accept only `jpg`, `jpeg`, `png`, `gif` and `webp` covers and show a local preview with `FileReader`.
+- Use a Bootstrap modal for gallery previews.
+- Filter rows with vanilla JavaScript and the required `data-status` attribute using `Available`, `Reserved` and `Sold`.
+- Preserve keyboard access, alternative text, readable contrast, visible focus and clear validation feedback.
+- Review, test and adapt AI output, then document meaningful use and commits honestly in `process-evidence.md`.
 
-Your instructions should help the AI understand what it is allowed to generate, what it must not generate, and which assessment constraints must be followed.
-
-TODO: Include instructions about:
-
-- allowed technologies;
-- technologies, frameworks, or tools that must not be used;
-- required files and folders;
-- CSS and JavaScript file requirements;
-- whether inline CSS or inline JavaScript is allowed;
-- Bootstrap layout requirements;
-- form requirements;
-- image validation requirements;
-- gallery modal requirements;
-- book status filtering requirements;
-- accessibility and usability expectations;
-- AI usage and process-evidence requirements.
-
-### My Copilot / AI instructions
-
-TODO: Write your Copilot/AI instructions here in clear bullet points.
----
-
-## 3. Project Overview
-
-Briefly describe the purpose of the BookVerse website.
-
-TODO: In 3–5 sentences, explain:
-
-- what BookVerse is;
-- who the website is for;
-- what users can view or interact with;
-- which technologies were used;
-- whether this is a static or dynamic website.
-
----
-
-## 4. Website Structure
-
-Complete the table below by describing the purpose of each page.
+## 3. Website Structure
 
 | File | Purpose |
 |---|---|
-| `index.html` | TODO |
-| `books.html` | TODO |
-| `gallery.html` | TODO |
-| `add.html` | TODO |
+| `index.html` | Home page with four-slide carousel and featured-book cards. |
+| `books.html` | Responsive catalogue table with a status filter. |
+| `gallery.html` | Twelve-cover responsive gallery with a full-size modal. |
+| `add.html` | Required Add Book form with validation and image preview. |
 
----
-
-## 5. Project Folder Structure
-
-Show the final structure of your `a1` folder.
-
-TODO: Update this structure if your final project contains additional required files or folders.
+## 4. Project Folder Structure
 
 ```text
 a1/
 ├── assets/
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── scripts.js
+│   ├── css/style.css
+│   ├── js/scripts.js
 │   └── images/
-│       └── covers/
+│       ├── favicon.svg
+│       └── covers/ (1.png to 12.png)
 ├── index.html
 ├── books.html
 ├── gallery.html
@@ -106,170 +60,103 @@ a1/
 └── process-evidence.md
 ```
 
-## 6. Technologies Used
+## 5. Technologies Used
 
-Complete the table below. Explain how each technology was used in your project.
-
-| Technology | How it was used in this project |
+| Technology | Use in BookVerse |
 |---|---|
-| HTML5 | TODO |
-| CSS3 | TODO |
-| Bootstrap 5 | TODO |
-| JavaScript | TODO |
-| Google Fonts | TODO |
-| Material Icons | TODO |
-| GitHub | TODO |
-| Coreteaching server | TODO |
-| AI tools | TODO |
+| HTML5 | Semantic structure, accessible content, tables and forms. |
+| CSS3 | Shared palette, light/dark themes, responsive refinements and focus states. |
+| Bootstrap 5 | Navbar, carousel, grid, cards, table wrapper, forms and modal. |
+| JavaScript | Theme persistence, status filter, gallery updates and validation. |
+| Google Fonts | Righteous headings and Elms Sans body text. |
+| Material Icons | Visual labels in the brand, navigation and headings. |
+| GitHub | Private repository and progressive development history. |
+| Coreteaching | Required production host; details will be added after deployment. |
+| ChatGPT | Requirement analysis, code review, debugging and documentation support. |
 
-## 7. Design and Layout
+## 6. Design and Layout
 
-Based on the assessment document, describe the design and layout choices.
+The design follows the supplied teal and amber reference. CSS custom properties store the assessment palette, while a shared selector switches between Default Light and Default Dark and stores the choice in `localStorage`. Righteous is used for headings and the brand; Elms Sans is used for body copy, controls and navigation. Material Icons reinforce labels without replacing visible text.
 
-TODO: Explain:
+Bootstrap containers, rows and responsive columns control the layout. Featured cards change from one to two to four columns, the gallery changes from two to six columns, the navbar collapses on smaller screens and the book table uses a responsive scrolling wrapper.
 
-how the required colour palette should be used;
-how to use the required fonts;
-how to use Material Icons;
-how Bootstrap should be used for layout and responsiveness.
+## 7. Required Features
 
-## 8. Required Features
+| Feature | Page | Implementation |
+|---|---|---|
+| Carousel | `index.html` | Four supplied images with captions and controls. |
+| Responsive books | `index.html` | Eight cards in a responsive grid. |
+| Book table | `books.html` | Twelve books with catalogue details and status. |
+| Status filter | `books.html` | Shows/hides rows by comparing the dropdown with `data-status`. |
+| Gallery grid | `gallery.html` | Twelve supplied covers in responsive columns. |
+| Image modal | `gallery.html` | Bootstrap modal updated from cover data attributes. |
+| Add Book form | `add.html` | Eleven required and labelled controls. |
+| Image validation | `add.html` | Extension allow-list and custom validity message. |
+| Image preview | `add.html` | `FileReader` displays the image without uploading it. |
 
-Complete the table below by explaining where and how each required feature should be implemented.
+## 8. JavaScript Functionality
 
-Feature	Page	Explanation
-Carousel	index.html	TODO
-Responsive book layout	index.html	TODO
-Book table	books.html	TODO
-Status filter	books.html	TODO
-Gallery grid	gallery.html	TODO
-Bootstrap image modal	gallery.html	TODO
-Add Book form	add.html	TODO
-Image validation	add.html	TODO
-Image preview	add.html	TODO
+All custom behaviour is consolidated in `assets/js/scripts.js`. The saved theme is applied before body rendering to avoid a light-coloured flash, and page-specific initialisers safely return when their target elements are absent. The book filter reads `data-status`; gallery listeners copy data attributes into the modal; and the form validates extensions, creates an accessible preview and focuses the first invalid control. No inline JavaScript is used.
 
-## 9. JavaScript Functionality
+## 9. Form Validation
 
-Describe the JavaScript features that should be implemented in your website.
+Every field is mandatory and each control is connected to a visible label. Number controls apply ranges and steps, the ISBN field uses a pattern and the agreement is a required checkbox. JavaScript compares the cover extension with `jpg`, `jpeg`, `png`, `gif` and `webp`. An invalid file receives a custom message and no preview; a valid file is shown with `FileReader`. An `aria-live` status announces the result. Valid submission only displays a Stage 1 confirmation because no data is sent.
 
-JavaScript feature	Page	How it works
-Image extension validation	add.html	TODO
-Image preview	add.html	TODO
-Gallery modal	gallery.html	TODO
-Book status filter	books.html	TODO
+## 10. Accessibility and Usability
 
-## 10. Form Validation
+Pages have unique titles, semantic landmarks, meaningful image alternative text, labelled controls, `aria-current` navigation and an accessible modal. Decorative icons are hidden from assistive technology. Keyboard users receive visible focus indicators, reduced-motion preferences are respected and badge combinations exceed 4.5:1 contrast with white text. Navigation and layout remain consistent at different widths.
 
-Every field in `add.html` is mandatory and each control is connected to a visible
-`label` using matching `for` and `id` values. Appropriate types and constraints
-are used, including number inputs for publication year and price, minimum and
-maximum values, a price step of `0.01`, and an ISBN pattern. The agreement uses
-a required checkbox.
+## 11. Testing and Validation
 
-The shared JavaScript reads the selected cover filename, extracts its extension
-and compares it with the allowed `jpg`, `jpeg`, `png`, `gif` and `webp` list. An
-invalid extension sets a custom validation message and does not create a
-preview. A valid file is read with `FileReader` and displayed locally without
-uploading it. Image selection results are announced through an `aria-live`
-status, and an invalid submission moves keyboard focus to the first invalid
-field. A valid submission only displays a Stage 1 confirmation because this is
-a static website.
+| Automated/local check | Result | Notes |
+|---|---|---|
+| JavaScript syntax | Pass | `scripts.js` passes `node --check`. |
+| Local asset references | Pass | No missing relative paths. |
+| Duplicate element IDs | Pass | No duplicate IDs detected within a page. |
+| Required form controls | Pass | All 11 required controls detected. |
+| Form labels | Pass | Every form control has an associated label. |
+| ARIA references | Pass | All `aria-describedby` IDs resolve. |
+| Inline code check | Pass | No inline styles or event handlers found. |
+| Badge contrast | Pass | Available 5.48:1, Reserved 5.02:1, Sold 7.58:1. |
+| W3C HTML validation | Pending | Validate all four final files before submission. |
+| W3C CSS validation | Pending | Validate final `style.css` before submission. |
+| Manual browser testing | Pending | Record themes, screen sizes and components. |
 
-## 11. Accessibility and Usability
+## 12. Deployment
 
-All pages use unique titles and semantic `header`, `nav`, `main` and `footer`
-elements. Images have meaningful alternative text, form controls have labels,
-the current navigation link uses `aria-current`, decorative icons are hidden
-from assistive technology, and the gallery modal has an accessible name and
-close control. Keyboard users receive strong visible focus indicators.
+| Item | Details |
+|---|---|
+| Deployed website URL | Pending |
+| Coreteaching server | Pending confirmation |
+| Deployment folder | `public_html/a1` |
+| `.htaccess` location | `public_html` — not inside `a1` |
 
-The interface uses consistent navigation, responsive Bootstrap grids and a
-scrollable table container for smaller screens. Status badge colours achieve at
-least a 4.5:1 contrast ratio with their white text. The stylesheet also respects
-the user's reduced-motion preference. Form errors use Bootstrap feedback,
-invalid submission focus, and a screen-reader announcement for cover-image
-validation and preview results.
+After deployment, each page will be opened from the live URL and checked for navigation, images, fonts, CSS, JavaScript, carousel, modal, filtering and validation. The final URL and results will then replace the pending entries.
 
-## 12. Testing and Validation
+## 13. Git and Development Process
 
-Complete this section after testing your website.
+The project is stored in the private `wp` repository under the required `a1` directory. Development is divided into stages covering the base site, persistent themes, debugging, accessibility, validation and deployment. Commit messages describe these changes rather than using generic messages. Debugging and AI records are maintained progressively and must link to matching commits before submission.
 
-HTML Validation
-File	Result	Notes
-index.html	TODO: Pass / Issues found	TODO
-books.html	TODO: Pass / Issues found	TODO
-gallery.html	TODO: Pass / Issues found	TODO
-add.html	TODO: Pass / Issues found	TODO
+## 14. AI Use Declaration
 
-CSS Validation
-File	Result	Notes
-assets/css/style.css	TODO: Pass / Issues found	TODO
+- [x] I used AI tools meaningfully during this assessment.
+- [x] I recorded meaningful AI use in `process-evidence.md`.
+- [x] I reviewed, tested and adapted AI-assisted output.
+- [x] I can explain all AI-assisted code submitted.
 
-Functionality Testing
-Feature tested	Result	Notes
-Navigation links	TODO	TODO
-Carousel	TODO	TODO
-Gallery modal	TODO	TODO
-Book status filter	TODO	TODO
-Add Book form validation	TODO	TODO
-Image preview	TODO	TODO
-Deployed site links/assets	TODO	TODO
+ChatGPT was used to interpret requirements, propose approaches, identify testable issues and improve documentation. Suggestions were checked against the brief, selectively accepted and adapted. The process log records prompts, modifications, rejected assumptions and verification.
 
-## 13. Deployment
+## 15. Process Evidence
 
-Provide details of your deployed website.
+| Requirement | Status |
+|---|---|
+| `process-evidence.md` included | Yes |
+| At least two debugging records | Yes |
+| At least two meaningful AI records | Yes |
+| Relevant commit links | Pending insertion from private GitHub history |
 
-Item	Details
-Deployed website URL	TODO
-Coreteaching server	TODO
-Deployment folder	TODO
-.htaccess location	TODO
+## 16. Known Limitations
 
-TODO: In 2–4 sentences, explain how you checked that the deployed website works correctly.
-
-## 14. Git and Development Process
-
-Briefly describe how you used Git during the project.
-
-TODO: Explain:
-
-how often you committed changes;
-what types of changes your commits show;
-how your Git history shows progressive development;
-how your commits relate to your process-evidence records.
-
-## 15. AI Use Declaration
-
-AI tools are required for this assessment.
-
-Confirm the following:
-- [ ] I used AI tools meaningfully during this assessment.
-- [ ] I recorded meaningful AI use in `process-evidence.md`.
-- [ ] I reviewed, tested, and adapted AI-assisted output.
-- [ ] I can explain all AI-assisted code submitted.
-
-TODO: Write 2–5 sentences.
-
-Detailed AI usage records must be included in process-evidence.md.
-
-## 16. Process Evidence
-
-Confirm that your process evidence file has been completed.
-
-Requirement	Completed?
-process-evidence.md file included	TODO: Yes / No
-At least 2 debugging records included	TODO: Yes / No
-At least 2 meaningful AI usage records included	TODO: Yes / No
-Relevant commit links included	TODO: Yes / No
-
-## 17. Known Issues or Limitations
-
-List any known issues or limitations in your submitted project.
-
-Issue or limitation	Explanation
-TODO	TODO
-TODO	TODO
-
-If there are no known issues, write:
-
-> No known issues at the time of submission.
+- Assessment 1 is static, so the form validates input but does not save or transmit it.
+- Bootstrap, Google Fonts and Material Icons are loaded from CDNs and require internet access.
+- Final W3C, browser and Coreteaching deployment results remain to be recorded.
