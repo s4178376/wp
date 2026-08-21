@@ -1,3 +1,4 @@
+/* Assessment brand palette and light-mode defaults */
 :root {
   --primary: #0d9488;
   --primary-dark: #0f766e;
@@ -15,21 +16,13 @@
   --shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
 }
 
-[data-bs-theme="dark"] {
-  --text-dark: #f3f4f6;
-  --text-light: #cbd5e1;
-  --background: #111827;
-  --surface: #1f2937;
-  --border: #374151;
-  --shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
-}
-
+/* Light mode is used unless the browser/OS requests dark mode */
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   color: var(--text-dark);
-  background: var(--background);
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
   font-family: "Elms Sans", Arial, sans-serif;
 }
 
@@ -37,9 +30,18 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   font-family: "Righteous", sans-serif;
 }
 
+/* Shared header with the required light-mode teal gradient */
+header { position: relative; }
+
 .navbar-bookverse {
-  background: var(--primary-dark);
-  border-bottom: 4px solid var(--secondary);
+  background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+}
+
+header::after {
+  display: block;
+  height: 4px;
+  content: "";
+  background: linear-gradient(90deg, #fbbf24 0%, #14b8a6 50%, #d97706 100%);
 }
 
 .navbar-bookverse .navbar-brand,
@@ -55,16 +57,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 
 .brand-icon { color: var(--accent-amber); }
 .nav-icon { font-size: 1rem; vertical-align: -0.15rem; }
-
-.theme-select {
-  width: auto;
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.45);
-}
-
-.theme-select:focus { border-color: var(--accent-amber); box-shadow: none; }
-.theme-select option { color: #111827; background: #fff; }
 
 main { flex: 1; }
 
@@ -133,19 +125,71 @@ main { flex: 1; }
 .btn-bookverse { color: #fff; background: var(--primary); border-color: var(--primary); }
 .btn-bookverse:hover, .btn-bookverse:focus { color: #fff; background: var(--primary-dark); border-color: var(--primary-dark); }
 
+/* Shared footer and thin light-mode accent strip */
 .site-footer {
+  position: relative;
   padding: 1rem;
   color: #fff;
   text-align: center;
-  background: var(--primary-dark);
-  border-top: 4px solid var(--secondary);
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 45%, #134e4a 100%);
+}
+
+.site-footer::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  content: "";
+  background: linear-gradient(90deg, #fbbf24 0%, #14b8a6 50%, #d97706 100%);
+}
+
+/* Automatic dark mode required by the lecturer's clarification */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --text-dark: #f1f5f9;
+    --text-light: #cbd5e1;
+    --background: #020617;
+    --surface: #0f172a;
+    --border: #334155;
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  }
+
+  body {
+    color: #f1f5f9;
+    background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+  }
+
+  .navbar-bookverse {
+    background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%);
+  }
+
+  header::after {
+    background: linear-gradient(90deg, #f59e0b 0%, #38bdf8 50%, #14b8a6 100%);
+  }
+
+  .site-footer {
+    background: linear-gradient(135deg, #082f49 0%, #0c4a6e 45%, #0f766e 100%);
+  }
+
+  .site-footer::before {
+    background: linear-gradient(90deg, #f59e0b 0%, #38bdf8 50%, #14b8a6 100%);
+  }
+
+  .form-control,
+  .form-select,
+  .books-table > :not(caption) > * > * {
+    color: #f1f5f9;
+    background-color: #0f172a;
+    border-color: #334155;
+  }
 }
 
 @media (max-width: 767.98px) {
   .hero-carousel .carousel-item { height: 230px; }
   .page-wrap { padding-top: 2rem; }
   .book-card img { height: 220px; }
-  .theme-select { margin-top: 0.75rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

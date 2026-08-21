@@ -80,78 +80,47 @@ I changed the Available badge to a darker green (`#047857`) and used the supplie
 I calculated contrast ratios of 5.48:1 for Available, 5.02:1 for Reserved and 7.58:1 for Sold against white. Each exceeds the WCAG 4.5:1 target for normal text.
 
 ---
-
-# 🤖 Section 2: AI Usage Log
-
-## AI Task 1
+## AI Task 3
 
 **Date:**  
-14/08/2026
+21/08/2026
 
 **Task Description:**  
-Interpret the assessment brief and create the first functional BookVerse implementation from the supplied starter package.
+Apply the lecturer's dark-mode clarification to the complete repository and add concise explanatory comments.
 
 **Tool Used:**  
 ChatGPT (Codex Work mode)
 
 **Prompt / Input:**  
-I supplied the complete assessment brief, rubric, reference screenshots and starter `a1.zip`. I specified student ID `s4178376` and requested both Default Light and Default Dark modes.
+I supplied the lecturer announcement explaining that light mode must use the teal/amber defaults and dark mode must be selected automatically with `@media (prefers-color-scheme: dark)` using navy, sky-blue, amber and teal colours. I got the code snippet to be used across all 4 main html documents
 
 **AI Output Summary:**  
-The AI mapped the requirements to four pages and produced semantic HTML, a shared Bootstrap-based layout, an external stylesheet, and a consolidated JavaScript file. It also implemented the carousel, status filtering with `data-status`, gallery modal, add-book validation, image preview and theme selection.
+The AI removed the manual theme system, implemented automatic CSS colour-scheme handling, added the clarified gradients, retained the existing accessibility and validation features, added gallery Previous/Next controls, and inserted comments explaining the main structures and functions.
 
 **What You Accepted:**  
-I accepted the required file structure, semantic layout, supplied colour palette, Bootstrap components and the separation of HTML, CSS and JavaScript.
+I accepted the automatic CSS theme approach because it directly follows the lecturer's clarification and preserves the required single CSS and JavaScript files.
 
 **What You Changed:**  
-To be completed after I personally review and adapt this first implementation. The related commit URL will also be added after this stage is committed.
+The earlier manual selector and `localStorage` approach were removed rather than combined with the new approach. This avoids conflicting theme states and keeps the implementation easier to explain.
 
 **Validation Performed:**  
-Initial automated checks were run for local asset references, HTML structure and JavaScript syntax. Browser testing, W3C validation and deployed-server testing still need to be recorded.
+I checked JavaScript syntax, local asset paths, IDs, semantic landmarks, required form controls, `data-status` usage, absence of inline code, and the presence of the supplied dark-mode colours. The completed ZIP was also integrity-tested.
 
 **Issues Identified:**  
-The assessment rubric contained reused status wording (`Available/Pending/Adopted`). I rejected that wording and followed the detailed BookVerse requirement: `Available`, `Reserved` and `Sold`.
-
----
-
-## AI Task 2
-
-**Date:**  
-18/08/2026
-
-**Task Description:**  
-Improve the Add Book form validation and accessibility during the third development-day review.
-
-**Tool Used:**  
-ChatGPT (Codex Work mode)
-
-**Prompt / Input:**  
-“we can smash through the next step now” together with the current BookVerse files and the rubric requirements for client-side validation, usability and valid code.
-
-**AI Output Summary:**  
-The AI reviewed the existing CSS, form markup and JavaScript. It identified low badge contrast and proposed accessible focus indicators, reduced-motion support, an `aria-live` image status, dynamic preview alternative text and focus movement to the first invalid field.
-
-**What You Accepted:**  
-I accepted changes that directly support the rubric: improved contrast, keyboard focus visibility, screen-reader feedback and clearer invalid-form navigation.
-
-**What You Changed:**  
-I kept the supplied teal and amber design and used darker matching shades only where needed for readable badge text. The screen-reader status was visually hidden so the required screenshot layout was not altered.
-
-**Validation Performed:**  
-I ran a JavaScript syntax check, searched for the new ARIA relationships and keyboard-focus code, confirmed that no inline code was introduced, and calculated the three badge contrast ratios.
-
-**Issues Identified:**  
-The original bright green and orange badge backgrounds did not provide sufficient contrast with small white text. The initial form also relied mainly on visual feedback, so assistive-technology announcements were added.
-
+The earlier manual theme implementation was technically functional but no longer compliant after the lecturer clarified that operating-system preference must control the theme
 
 ---
 
 # 📌 Final Reflection (End of Assessment)
 
 **What AI was most useful for:**  
+AI was most useful for mapping the long brief to the required file structure, reviewing repeated code patterns, proposing focused accessibility improvements and identifying test cases for JavaScript behaviour.
 
 **Where AI was incorrect or misleading:**  
+The initial theme interpretation used a manual website selector. Although it worked technically, it did not match the later lecturer clarification requiring automatic operating-system selection. I corrected the approach when authoritative course information became available.
 
 **What you learned about debugging:**  
+I learned to describe a bug through its observable symptom, reproduction steps and root cause before changing code. I also learned to verify fixes with targeted checks such as syntax tests, path audits, contrast calculations and browser-mode emulation.
 
 **How your approach changed over time:**  
+I moved from building all visible features first to making smaller, testable changes across separate development days. Later changes focused on accessibility, evidence, documentation and compliance with clarified requirements rather than adding unnecessary features.

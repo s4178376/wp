@@ -67,7 +67,7 @@ a1/
 | HTML5 | Semantic structure, accessible content, tables and forms. |
 | CSS3 | Shared palette, light/dark themes, responsive refinements and focus states. |
 | Bootstrap 5 | Navbar, carousel, grid, cards, table wrapper, forms and modal. |
-| JavaScript | Theme persistence, status filter, gallery updates and validation. |
+| JavaScript | Status filtering, gallery navigation and form validation. |
 | Google Fonts | Righteous headings and Elms Sans body text. |
 | Material Icons | Visual labels in the brand, navigation and headings. |
 | GitHub | Private repository and progressive development history. |
@@ -76,7 +76,7 @@ a1/
 
 ## 6. Design and Layout
 
-The design follows the supplied teal and amber reference. CSS custom properties store the assessment palette, while a shared selector switches between Default Light and Default Dark and stores the choice in `localStorage`. Righteous is used for headings and the brand; Elms Sans is used for body copy, controls and navigation. Material Icons reinforce labels without replacing visible text.
+The light design uses the supplied teal and amber brand palette. Automatic dark mode is implemented with `@media (prefers-color-scheme: dark)` as clarified by the lecturer. It changes the page to a deep navy gradient, the navigation and footer to navy blue, the accent strips to amber/sky-blue/teal, and the text to near-white. The browser or operating system selects the mode; no manual switch is required. Righteous is used for headings and the brand; Elms Sans is used for body copy, controls and navigation.
 
 Bootstrap containers, rows and responsive columns control the layout. Featured cards change from one to two to four columns, the gallery changes from two to six columns, the navbar collapses on smaller screens and the book table uses a responsive scrolling wrapper.
 
@@ -89,14 +89,14 @@ Bootstrap containers, rows and responsive columns control the layout. Featured c
 | Book table | `books.html` | Twelve books with catalogue details and status. |
 | Status filter | `books.html` | Shows/hides rows by comparing the dropdown with `data-status`. |
 | Gallery grid | `gallery.html` | Twelve supplied covers in responsive columns. |
-| Image modal | `gallery.html` | Bootstrap modal updated from cover data attributes. |
+| Image modal | `gallery.html` | Bootstrap modal updated from cover data attributes with Previous/Next navigation. |
 | Add Book form | `add.html` | Eleven required and labelled controls. |
 | Image validation | `add.html` | Extension allow-list and custom validity message. |
 | Image preview | `add.html` | `FileReader` displays the image without uploading it. |
 
 ## 8. JavaScript Functionality
 
-All custom behaviour is consolidated in `assets/js/scripts.js`. The saved theme is applied before body rendering to avoid a light-coloured flash, and page-specific initialisers safely return when their target elements are absent. The book filter reads `data-status`; gallery listeners copy data attributes into the modal; and the form validates extensions, creates an accessible preview and focuses the first invalid control. No inline JavaScript is used.
+All custom behaviour is consolidated in `assets/js/scripts.js`, while light/dark presentation is handled entirely by CSS. Page-specific initialisers safely return when their target elements are absent. The book filter reads `data-status`; gallery listeners copy data attributes into the modal and cycle through the 12 covers; and the form validates extensions, creates an accessible preview and focuses the first invalid control. No inline JavaScript is used.
 
 ## 9. Form Validation
 
@@ -127,7 +127,7 @@ Pages have unique titles, semantic landmarks, meaningful image alternative text,
 | Item | Details |
 |---|---|
 | Deployed website URL | Pending |
-| Coreteaching server | Pending confirmation |
+| Coreteaching server | Titan (`titan.csit.rmit.edu.au`) |
 | Deployment folder | `public_html/a1` |
 | `.htaccess` location | `public_html` — not inside `a1` |
 
@@ -135,7 +135,7 @@ After deployment, each page will be opened from the live URL and checked for nav
 
 ## 13. Git and Development Process
 
-The project is stored in the private `wp` repository under the required `a1` directory. Development is divided into stages covering the base site, persistent themes, debugging, accessibility, validation and deployment. Commit messages describe these changes rather than using generic messages. Debugging and AI records are maintained progressively and must link to matching commits before submission.
+The project is stored in the private `wp` repository under the required `a1` directory. Development is divided into stages covering the base site, theme correction, debugging, accessibility, validation and deployment. Commit messages describe these changes rather than using generic messages. Debugging and AI records are maintained progressively and must link to matching commits before submission.
 
 ## 14. AI Use Declaration
 
