@@ -8,7 +8,7 @@
 | Student name | Seth Nightingale |
 | Student ID | s4178376 |
 | GitHub repository URL | <https://github.com/s4178376/wp> |
-| Deployed website URL | https://titan.csit.rmit.edu.au/~s4178376/wp/a1/|
+| Deployed website URL | https://titan.csit.rmit.edu.au/~s4178376/a1/books.html |
 
 ## 1. Project Overview
 
