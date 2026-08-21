@@ -13,8 +13,8 @@ This file records debugging work, use of AI tools and the iterative development 
 
 ### Bug 1 – Saved theme displayed too late
 
-**Date identified:** 17/08/2026  
-**Date fixed:** 17/08/2026  
+**Date identified:** 17/08/2026
+**Date fixed:** 17/08/2026
 
 **Files involved:**
 
