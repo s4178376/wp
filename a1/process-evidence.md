@@ -79,6 +79,8 @@ I changed the Available badge to a darker green (`#047857`) and used the supplie
 **Verification:**  
 I calculated contrast ratios of 5.48:1 for Available, 5.02:1 for Reserved and 7.58:1 for Sold against white. Each exceeds the WCAG 4.5:1 target for normal text.
 
+## Bug 2
+
 ---
 ## AI Task 3
 
