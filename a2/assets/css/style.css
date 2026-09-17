@@ -1,0 +1,222 @@
+/* Starter additions: keep incomplete-feature notices clear and carousel text readable. */
+.starter-note { padding: 1rem; border-left: 4px solid #d97706; }
+#featured-carousel .carousel-caption,
+#featured-carousel .carousel-caption h1,
+#featured-carousel .carousel-caption h2 { color: #ffffff; }
+
+/* Reusable custom properties keep the colour palette consistent throughout the site. */
+:root {
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #14b8a6;
+  --secondary: #d97706;
+  --secondary-dark: #b45309;
+  --accent-amber: #fbbf24;
+  --accent-green: #10b981;
+  --accent-slate: #475569;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --background: #f9fafb;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+/* Light mode is used unless the browser/OS requests dark mode */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-dark);
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  font-family: "Elms Sans", Arial, sans-serif;
+}
+
+/* Headings and the logo use the display font; ordinary text inherits Elms Sans. */
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: "Righteous", sans-serif;
+}
+
+/* Shared header with the required light-mode teal gradient */
+header { position: relative; }
+
+.navbar-bookverse {
+  background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+}
+
+header::after {
+  display: block;
+  height: 4px;
+  content: "";
+  background: linear-gradient(90deg, #fbbf24 0%, #14b8a6 50%, #d97706 100%);
+}
+
+.navbar-bookverse .navbar-brand,
+.navbar-bookverse .nav-link {
+  color: #fff;
+}
+
+.navbar-bookverse .nav-link:hover,
+.navbar-bookverse .nav-link:focus,
+.navbar-bookverse .nav-link.active {
+  color: var(--accent-amber);
+}
+
+.brand-icon { color: var(--accent-amber); }
+.nav-icon { font-size: 1rem; vertical-align: -0.15rem; }
+
+/* flex: 1 expands main so the footer stays at the bottom on short pages. */
+main { flex: 1; }
+
+.page-wrap { padding-top: 3.5rem; padding-bottom: 4rem; }
+.section-title { margin-bottom: 1.5rem; }
+.section-title .material-icons { color: var(--primary); vertical-align: -0.25rem; }
+
+/* A fixed slide height prevents the page from jumping between carousel images. */
+.hero-carousel .carousel-item { height: 320px; }
+/* object-fit: cover fills the slide while retaining the image proportions. */
+.hero-carousel img { width: 100%; height: 100%; object-fit: cover; }
+.hero-carousel .carousel-caption { text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9); }
+
+.book-card,
+.content-panel,
+.gallery-modal .modal-content {
+  color: var(--text-dark);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* Equal card height aligns cards in each Bootstrap grid row. */
+.book-card { height: 100%; overflow: hidden; transition: transform 0.2s ease; }
+.book-card:hover { transform: translateY(-3px); }
+.book-card img { height: 250px; object-fit: cover; }
+.book-card .card-title { font-size: 1rem; }
+.book-meta { color: var(--text-light); font-size: 0.78rem; }
+
+.badge-available { color: #fff; background: #047857; }
+.badge-reserved { color: #fff; background: var(--secondary-dark); }
+.badge-sold { color: #fff; background: var(--accent-slate); }
+
+/* The responsive wrapper in books.html adds horizontal scrolling on narrow screens. */
+.books-table { margin-bottom: 0; color: var(--text-dark); }
+.books-table > :not(caption) > * > * { padding: 1rem; background: var(--surface); border-color: var(--border); }
+.filter-panel { padding: 1rem; margin-bottom: 1.5rem; }
+
+/* Each cover is a real button so it can receive keyboard focus and open the modal. */
+.gallery-item {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-radius: 0.6rem;
+  box-shadow: var(--shadow);
+}
+
+.gallery-item img { width: 100%; aspect-ratio: 1 / 1.12; object-fit: cover; transition: transform 0.2s ease; }
+.gallery-item:hover img, .gallery-item:focus img { transform: scale(1.04); }
+/* A visible focus outline shows keyboard users which control is active. */
+.gallery-item:focus-visible,
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.nav-link:focus-visible,
+.navbar-brand:focus-visible {
+  outline: 3px solid var(--accent-amber);
+  outline-offset: 3px;
+}
+.gallery-modal .modal-header { color: #fff; background: var(--primary); }
+.gallery-modal .modal-body img { width: 100%; max-height: 65vh; object-fit: contain; }
+
+/* Limiting line length keeps the form readable on large displays. */
+.form-panel { max-width: 760px; padding: 2rem; margin: auto; }
+.form-panel-wrap { max-width: 760px; margin: auto; }
+.form-label { font-weight: 600; }
+.form-control, .form-select { color: var(--text-dark); background-color: var(--surface); border-color: var(--border); }
+.form-control::placeholder { color: var(--text-light); }
+/* JavaScript adds is-visible only after FileReader has produced a valid preview. */
+.image-preview { display: none; max-width: 220px; max-height: 280px; margin-top: 1rem; border: 2px solid var(--border); border-radius: 0.5rem; }
+.image-preview.is-visible { display: block; }
+.btn-bookverse { color: #fff; background: var(--primary); border-color: var(--primary); }
+.btn-bookverse:hover, .btn-bookverse:focus { color: #fff; background: var(--primary-dark); border-color: var(--primary-dark); }
+
+/* Shared footer and thin light-mode accent strip */
+.site-footer {
+  position: relative;
+  padding: 1rem;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 45%, #134e4a 100%);
+}
+
+.site-footer::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  content: "";
+  background: linear-gradient(90deg, #fbbf24 0%, #14b8a6 50%, #d97706 100%);
+}
+
+/* Automatic dark mode required by the lecturer's clarification */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --text-dark: #f1f5f9;
+    --text-light: #cbd5e1;
+    --background: #020617;
+    --surface: #0f172a;
+    --border: #334155;
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  }
+
+  body {
+    color: #f1f5f9;
+    background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+  }
+
+  .navbar-bookverse {
+    background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%);
+  }
+
+  header::after {
+    background: linear-gradient(90deg, #f59e0b 0%, #38bdf8 50%, #14b8a6 100%);
+  }
+
+  .site-footer {
+    background: linear-gradient(135deg, #082f49 0%, #0c4a6e 45%, #0f766e 100%);
+  }
+
+  .site-footer::before {
+    background: linear-gradient(90deg, #f59e0b 0%, #38bdf8 50%, #14b8a6 100%);
+  }
+
+  .form-control,
+  .form-select,
+  .books-table > :not(caption) > * > * {
+    color: #f1f5f9;
+    background-color: #0f172a;
+    border-color: #334155;
+  }
+}
+
+/* Bootstrap's md breakpoint: reduce large elements for phones and small tablets. */
+@media (max-width: 767.98px) {
+  .hero-carousel .carousel-item { height: 230px; }
+  .page-wrap { padding-top: 2rem; }
+  .book-card img { height: 220px; }
+}
+
+/* Respect the operating-system accessibility preference for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

@@ -1,0 +1,8 @@
+# Covers must still be included in the final ZIP and uploaded separately.
+/assets/images/covers/
+.DS_Store
+*.log
+# Never commit real connection secrets.
+.env
+/includes/config.local.inc
+
