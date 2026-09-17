@@ -1,112 +1,37 @@
-# BookVerse Process Evidence Log
+# Process Evidence Log
 
-**Student:** Seth Nightingale  
-**Student ID:** s4178376  
-**Repository:** https://github.com/s4178376/wp  
-**Project:** BookVerse – Online Bookstore Platform  
+This file combines:
+1. Debugging records
+2. AI (e.g., Copilot/ChatGPT) usage logs
 
-This file records debugging work, use of AI tools and the iterative development process followed during Assessment 1.
-
----
-
-## Section 1: Debugging Records
-
-### Bug 1 – Saved theme displayed too late
-
-**Date identified:** 17/08/2026
-**Date fixed:** 17/08/2026
-
-**Files involved:**
-
-- `index.html`
-- `books.html`
-- `gallery.html`
-- `add.html`
-- `assets/js/scripts.js`
-
-**Related commit:**  
-[8c062e361883a0b805cc5b0ef813fbf07a71356a 
-https://github.com/s4178376/wp/commit/8c062e361883a0b805cc5b0ef813fbf07a71356a]
-
-**Symptom:**  
-When the earlier manual Dark theme was selected, a newly loaded page initially appeared in Light mode before changing to Dark mode. This caused a brief flash of the light design when refreshing or navigating between pages.
-
-**Steps to reproduce:**
-
-1. Select the earlier Default Dark option.
-2. Refresh the page or follow a navigation link.
-3. Observe the initial page appearance before JavaScript finishes loading.
-
-**Root cause:**  
-Every page initially declared itself as Light mode. The saved theme preference was not read until the `DOMContentLoaded` event, after the page had already started rendering.
-
-**Fix:**  
-At this stage of development, the saved theme was applied earlier from the shared external JavaScript file. The script was referenced from the document head, while page-specific functionality continued to initialise after `DOMContentLoaded`.
-
-**Verification:**  
-I checked that the four pages loaded the shared JavaScript file once and that no inline JavaScript was introduced. The JavaScript file also passed a Node syntax check.
-
-**Later development:**  
-This manual theme system was eventually removed after the lecturer clarified that Light and Dark modes must be selected automatically using `prefers-color-scheme`. This record remains because it documents a genuine earlier debugging step.
+You must maintain this file throughout development.
 
 ---
 
-### Bug 2 – Status badges had insufficient contrast
-
-**Date identified:** 17/08/2026  
-**Date fixed:** 18/08/2026  
-
-**File involved:**  
-`assets/css/style.css`
-
-**Related commit:**  
-[70a74f86bf374b0e2cdffcaa941852376229819a
-https://github.com/s4178376/wp/commit/70a74f86bf374b0e2cdffcaa941852376229819a]
-
-**Symptom:**  
-The white text used on the Available and Reserved status badges was difficult to read against the original bright green and orange backgrounds.
-
-**Steps to reproduce:**
-
-1. Open `index.html` or `books.html`.
-2. Locate the Available and Reserved badges.
-3. Compare the small white text against their original background colours.
-4. Test the colour combinations using a contrast checker.
-
-**Root cause:**  
-The badges used bright accent colours directly as their backgrounds. These colours were suitable for decorative elements but did not provide sufficient contrast for small white text.
-
-**Fix:**  
-I changed the Available badge background to darker green `#047857` and the Reserved badge to darker amber `#b45309`. The Sold badge retained its darker slate colour. White text remained consistent across all status badges.
-
-**Verification:**  
-The calculated contrast ratios against white were:
-
-- Available: 5.48:1
-- Reserved: 5.02:1
-- Sold: 7.58:1
-
-These exceed the WCAG target of 4.5:1 for normal text.
+## General Instructions
+- Record entries as you work (not at the end)
+- Be honest and specific
+- Link to commits.Each debugging record must include at least one related GitHub commit 
+(using commit hash and URL).
+- Superficial or fabricated entries will not receive marks
 
 ---
 
-### Bug 3 – Dark mode did not match the clarified requirement
+# 🔧 Section 1: Debugging Records
 
-**Date identified:** 21/08/2026  
-**Date fixed:** 21/08/2026  
+## Bug 1
 
-**Files involved:**
+**Date Identified:**  
+17/08/2026
 
-- `index.html`
-- `books.html`
-- `gallery.html`
-- `add.html`
-- `assets/css/style.css`
-- `assets/js/scripts.js`
+**Date Fixed:**  
+17/08/2026
 
-**Related commit:**  
-[814f76ec417495f02f4958a5fd674fdea24ca6df
-https://github.com/s4178376/wp/commit/814f76ec417495f02f4958a5fd674fdea24ca6df]
+**File:**  
+`assets/js/scripts.js`, `index.html`, `books.html`, `gallery.html`, `add.html`
+
+**Related Commit:**  
+Pending — add the commit hash and GitHub URL after committing today's changes.
 
 **Symptom:**  
 The earlier version required the visitor to select Default Light or Default Dark manually. Its Dark mode also retained a teal navigation bar rather than matching the navy-blue Dark mode shown in the assessment screenshots.
