@@ -1,5 +1,28 @@
 # Add this restructured starter to wp
 
+## Database connection update
+
+includes/db_connect.inc now contains the commented procedural MySQLi
+connection code from the next-step explanation. Settings are not configured,
+and the pages still do not include this file. No PHP runtime or database
+testing has been performed. The official README and evidence are unchanged.
+This update supersedes the inactive-connection description in the older
+reference notes in docs/.
+
+If you changed files locally since downloading the starter, copy only
+includes/db_connect.inc into your existing a2 folder to preserve your work.
+Otherwise this ZIP contains the full a2 folder to place inside wp.
+
+Required PHP server environment variables, to configure later:
+- Local: BOOKVERSE_LOCAL_DB_HOST, BOOKVERSE_LOCAL_DB_USER,
+  BOOKVERSE_LOCAL_DB_PASSWORD.
+- Live: BOOKVERSE_LIVE_DB_HOST, BOOKVERSE_LIVE_DB_USER,
+  BOOKVERSE_LIVE_DB_PASSWORD.
+
+Database names: bookverse locally and s4178376 live.
+Do not put passwords in Git. This code does not automatically load .env files.
+Confirm RMIT's supported configuration method before deployment.
+
 This package merges the official a2 starter with the earlier PHP scaffold.
 The supplied README.md, process-evidence.md and favicon.svg are unchanged.
 The official asset directories and their placeholder files are retained.

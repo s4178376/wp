@@ -22,31 +22,31 @@ You must maintain this file throughout development.
 ## Bug 1
 
 **Date Identified:**  
-17/9/2026
+(e.g., 15/03/2026)
 
 **Date Fixed:**  
-17/9/2026
+(e.g., 15/03/2026)
 
 **File:**  
-bookverse.sql
+(e.g., about.html)
 
 **Related Commit:**  
-https://github.com/s4178376/wp/commit/27d1383ea90a9fea003c82cfd4c50ed12270bd69
+(e.g., abc1234)
 
 **Symptom:**  
-The workspace was operating under the wrong version of mysql - the mssql pre-installed for the workspace was conflicting with the use of MySql
+What went wrong?
 
 **Steps to Reproduce:**  
-Download the VScode extension 'mssql' and have it run within your workspace
+How can the issue be triggered?
 
 **Root Cause:**  
-Pre-configured workspace settings
+Why did the issue occur?
 
 **Fix:**  
-Disabled the use of mssql
+What did you change?
 
 **Verification:**  
-bookverse.sql started working with normalised mysql syntax
+How did you confirm the fix?
 
 ---
 
