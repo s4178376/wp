@@ -1,0 +1,6 @@
+# Uploaded files are served only as images. Disable script handlers and listing.
+Options -Indexes -ExecCGI
+SetHandler default-handler
+<FilesMatch "(?i)\.(php[0-9]?|phtml|phar|cgi|pl|shtml)$">
+    Require all denied
+</FilesMatch>

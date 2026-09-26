@@ -220,3 +220,11 @@ main { flex: 1; }
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Dynamic book details and links, shared across all pages. */
+.detail-cover { width: 100%; max-height: 550px; object-fit: contain; }
+.book-description { white-space: pre-wrap; overflow-wrap: anywhere; }
+.card-title a, .books-table a { color: var(--primary-dark); }
+@media (prefers-color-scheme: dark) {
+  .card-title a, .books-table a { color: #38bdf8; }
+}

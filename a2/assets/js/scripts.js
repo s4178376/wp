@@ -47,6 +47,7 @@ function initialiseGalleryModal() {
 function initialiseBookForm() {
   const form = document.querySelector("#add-book-form");
   if (!form) return;
+  document.querySelector("#server-errors")?.focus();
   const input = form.querySelector("#image-path");
   const preview = form.querySelector("#image-preview");
   const status = form.querySelector("#image-status");
@@ -72,6 +73,12 @@ function initialiseBookForm() {
       status.textContent = "Unsupported file extension.";
       return;
     }
+    if (file.size > 5 * 1024 * 1024) {
+      input.setCustomValidity("Choose an image no larger than 5 MiB.");
+      input.classList.add("is-invalid");
+      status.textContent = "Image exceeds 5 MiB.";
+      return;
+    }
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       if (version !== selectionVersion) return;
@@ -90,17 +97,15 @@ function initialiseBookForm() {
   });
 
   form.addEventListener("submit", (event) => {
-    // Starter only: always prevent submission, even if browser checks pass.
-    // Later permit valid submissions to the completed PHP processing endpoint.
-    event.preventDefault();
+    // Permit valid forms to POST. PHP independently validates everything.
     form.classList.add("was-validated");
     const message = form.querySelector("#form-status");
     if (!form.checkValidity()) {
+      event.preventDefault();
       message.textContent = "Please correct the highlighted fields.";
       form.querySelector(":invalid")?.focus();
       return;
     }
-    message.textContent = "Browser checks passed. Starter only: no record or image was saved.";
+    message.textContent = "Submitting book…";
   });
 }
-

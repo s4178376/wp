@@ -6,3 +6,9 @@
 .env
 /includes/config.local.inc
 
+
+/includes/config.private.php
+# Keep upload protection versioned even though image contents are ignored.
+!/assets/images/covers/
+/assets/images/covers/*
+!/assets/images/covers/.htaccess

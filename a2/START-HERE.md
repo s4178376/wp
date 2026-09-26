@@ -1,69 +1,97 @@
-# Add this restructured starter to wp
+# Integrate the database milestone
 
-## Database connection update
+This package upgrades the supplied starter, not your submitted a1.
+The homepage, catalogue, gallery and details now read the books table.
+The Add Book form now submits to PHP, validates data and uploads, inserts
+a record, and redirects to its details page.
 
-includes/db_connect.inc now contains the commented procedural MySQLi
-connection code from the next-step explanation. Settings are not configured,
-and the pages still do not include this file. No PHP runtime or database
-testing has been performed. The official README and evidence are unchanged.
-This update supersedes the inactive-connection description in the older
-reference notes in docs/.
+## 1 Preserve your existing work
 
-If you changed files locally since downloading the starter, copy only
-includes/db_connect.inc into your existing a2 folder to preserve your work.
-Otherwise this ZIP contains the full a2 folder to place inside wp.
+Back up your current a2 outside htdocs. Merge this a2 folder into
+/Applications/XAMPP/xamppfiles/htdocs/wp/a2.
+Keep any existing private configuration and additional cover files.
+README.md and process-evidence.md are unchanged from the ZIP you supplied.
+Do not overwrite newer local edits to those files.
+The official templates still require your own completion before submission.
 
-Required PHP server environment variables, to configure later:
-- Local: BOOKVERSE_LOCAL_DB_HOST, BOOKVERSE_LOCAL_DB_USER,
-  BOOKVERSE_LOCAL_DB_PASSWORD.
-- Live: BOOKVERSE_LIVE_DB_HOST, BOOKVERSE_LIVE_DB_USER,
-  BOOKVERSE_LIVE_DB_PASSWORD.
+## 2 Local configuration
 
-Database names: bookverse locally and s4178376 live.
-Do not put passwords in Git. This code does not automatically load .env files.
-Confirm RMIT's supported configuration method before deployment.
+Start Apache and MySQL in XAMPP. The code automatically uses:
+host 127.0.0.1, port 3306, user root, empty password, database bookverse.
+These are development defaults, not live credentials.
+Your already imported books table can be reused. Do NOT reimport the SQL.
+Environment variables BOOKVERSE_LOCAL_DB_HOST/USER/PASSWORD/DATABASE/PORT,
+if configured previously, override these defaults.
 
-This package merges the official a2 starter with the earlier PHP scaffold.
-The supplied README.md, process-evidence.md and favicon.svg are unchanged.
-The official asset directories and their placeholder files are retained.
-The official ZIP did not contain covers, CSS, JavaScript or PHP pages.
-The 12 covers and shared stylesheet come from the available Part 1 copy;
-the PHP pages and JavaScript come from the earlier Part 2 scaffold.
-database/bookverse.sql is the unchanged SQL from the assessment package.
+If your local password or port differs, copy includes/config.example.php
+to includes/config.private.php and edit its local section privately.
+Do not commit config.private.php. You do not need a root-level .htaccess
+containing credentials for this version.
 
-## Documentation to work on
+## 3 Permissions
 
-- README.md: official student-completed template. Its TODOs are intentional
-  at this starting stage, but must all be completed before final submission.
-- process-evidence.md: official blank evidence template, not completed records.
-  It contains two example slots of each type; add slots as needed to meet
-  the requirement of at least four real bugs and four meaningful AI records.
-  Include actual commit hashes and URLs in both debugging and AI records.
-- docs/starter-development-notes.md: the previous starter's technical notes.
-- docs/draft-ai-scaffold-record.md: reference material for reviewing the first
-  AI interaction, not a substitute for your official evidence log.
+If you encounter the previous asset permissions problem again, set folders
+inside a2 to 755 and ordinary source/assets to 644. Do not change wp/.git.
+The covers directory also needs to be writable by PHP for uploads.
+The course specifies 777 for this particular directory:
+chmod 777 /Applications/XAMPP/xamppfiles/htdocs/wp/a2/assets/images/covers
 
-No tests, commits, student reflections or acceptance decisions have been
-filled into the official templates on your behalf.
+Do not use 777 on the whole project. Keep includes/.htaccess and
+assets/images/covers/.htaccess from this package. They protect include files
+from direct requests and prevent execution of uploaded scripts respectively.
+These are not substitutes for the required university authentication file.
 
-## Installation
+## 4 Test in the browser
 
-1. Extract the ZIP. Move its a2 folder into your existing wp folder, beside a1.
-2. If wp/a2 already exists, compare/merge the files rather than overwriting work.
-3. Open wp in VS Code. Keep the existing repository and its history.
-4. Review includes/header.inc, nav.inc and footer.inc, then index.php.
-5. Review the remaining placeholders and the JavaScript starter.
-6. Use the draft AI notes to complete the official process-evidence.md entry
-   with your actual review, development date, changes, tests and commit link.
-7. Inspect git status before staging. Commit only the intended a2 changes.
+Open http://localhost/wp/a2/
+- Homepage: four latest books, sorted by created_at DESC then book_id DESC.
+  With the unchanged seed data, IDs 12, 11, 10 and 9 normally appear.
+- Browse Books: 12 sample records; each title opens the correct details page.
+- Filters: Available, Reserved, Sold and Show All.
+- Details: check ?id=1; then ?id=0, ?id=abc and an unknown positive ID.
+- Gallery: all covers, modal close, previous and next including wrapping.
+- Add Book: submit valid fields and a small JPG/PNG/GIF/WEBP image.
+  Use a 10- or 13-character ISBN such as 9781020000012.
+- Confirm success on the details page and appearance in all four read pages.
+- Refresh details: the record must not be inserted a second time.
+- Try blank fields, unsupported files, an image over 5 MiB and a non-image
+  renamed to .jpg. Browser and server validation should prevent insertion.
+- On a server rejection, confirm text remains and reselect the file.
+- Stop MySQL temporarily and confirm a readable error rather than a broken page.
+- Check mobile/tablet/desktop, keyboard use, light and dark modes.
+- Validate rendered HTML and CSS. Raw PHP is not HTML validator input.
 
-Suggested first commit: Create Part 2 PHP scaffold and shared includes
+The UI file limit is 5 MiB. PHP upload_max_filesize must allow that size and
+post_max_size must be larger to include all fields (for example 8M).
+A lower PHP limit will reject a file even if the browser permits it.
+Check the active XAMPP php.ini before changing limits, then restart Apache.
 
-The covers folder is included in this ZIP but ignored by a2/.gitignore as
-required by the brief. Git will not include these covers in a future fresh clone.
-Keep a separate copy for deployment and Canvas packaging.
+## 5 PHP checks on your Mac
 
-This is not the final COSC2446_a2_s4178376.zip submission.
-This package contains only a2: a1 and your repository history are untouched.
-No XAMPP installation, database connection, deployment, commit or push is done.
-Next milestone: implement the database connection and read-only book queries.
+From the a2 directory run:
+find . -type f \( -name '*.php' -o -name '*.inc' \) -exec /Applications/XAMPP/xamppfiles/bin/php -l {} \;
+
+Server extensions needed: mysqli (with mysqlnd), fileinfo and sessions.
+The connection uses TCP to avoid the earlier local socket mismatch.
+
+## 6 Titan later
+
+Copy config.example.php to config.private.php on Titan and fill the live
+section using SDAMDS. The host is talsprddb02.int.its.rmit.edu.au.
+The exact database name includes a suffix; it is NOT assumed to be s4178376.
+Upload config.private.php privately, never through Git. Exclude it from ZIPs
+you share and preserve it when updating code.
+Set the covers upload permission per the course instructions.
+Keep the RMIT authentication .htaccess in public_html.
+Verify the include files return 403 when requested directly in a browser.
+Do not use the earlier broad upload command without excluding config.private.php.
+
+## Scope and evidence
+
+This is a functional implementation milestone awaiting PHP/MySQL browser tests
+on your machine. No runtime, database, W3C or deployed pass is claimed.
+The environment here does not have PHP/MySQL and package installation was unavailable.
+See docs/database-milestone.md for the changes and actual checks.
+Older docs/starter-development-notes.md and draft AI notes describe earlier
+stages and are historical, not the current feature status.
+No Git commit, push, deployment or database import was performed.

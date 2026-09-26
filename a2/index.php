@@ -1,7 +1,19 @@
 <?php
 $pageTitle = 'BookVerse | Home';
 $activePage = 'index.php';
-// __DIR__ resolves includes relative to this file, not the terminal directory.
+require_once __DIR__ . '/includes/functions.inc';
+require_once __DIR__ . '/includes/db_connect.inc';
+$books = [];
+if ($connection !== null) {
+    try {
+        // Tie-break on ID because imported records can share a creation timestamp.
+        $books = select_books($connection,
+            'SELECT book_id, title, author, genre, price, image_path, status
+             FROM books ORDER BY created_at DESC, book_id DESC LIMIT 4');
+    } catch (Throwable $exception) {
+        $dbError = report_query_failure($exception);
+    }
+}
 require __DIR__ . '/includes/header.inc';
 require __DIR__ . '/includes/nav.inc';
 ?>
@@ -39,12 +51,26 @@ require __DIR__ . '/includes/nav.inc';
   </section>
   <section class="container page-wrap" aria-labelledby="latest-heading">
     <h2 id="latest-heading">Latest Books</h2>
-    <p class="starter-note">Starter: the latest four database records will appear here.</p>
+    <?php if ($dbError): ?>
+      <p class="alert alert-danger" role="alert"><?= e($dbError) ?></p>
+    <?php elseif (!$books): ?>
+      <p>No books yet. <a href="add.php">Add the first book</a>.</p>
+    <?php endif; ?>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" id="latest-books">
-      <!-- Later: prepared SELECT ordered by created_at DESC, book_id DESC LIMIT 4.
-           Escape database values with htmlspecialchars() inside each card. -->
+      <?php foreach ($books as $book): ?>
+        <div class="col">
+          <article class="card book-card">
+            <img class="card-img-top" src="<?= e(cover_url($book['image_path'])) ?>" alt="<?= e($book['title']) ?> cover">
+            <div class="card-body">
+              <h3 class="card-title"><a href="details.php?id=<?= e($book['book_id']) ?>"><?= e($book['title']) ?></a></h3>
+              <p class="book-meta"><?= e($book['genre']) ?> · <?= e($book['author']) ?></p>
+              <p>$<?= e(number_format((float) $book['price'], 2)) ?></p>
+              <span class="badge <?= e(badge_class($book['status'])) ?>"><?= e($book['status']) ?></span>
+            </div>
+          </article>
+        </div>
+      <?php endforeach; ?>
     </div>
   </section>
 </main>
 <?php require __DIR__ . '/includes/footer.inc'; ?>
-
