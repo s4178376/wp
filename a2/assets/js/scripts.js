@@ -9,17 +9,21 @@ function initialiseBookFilter() {
   const filter = document.querySelector("#status-filter");
   if (!filter) return; // Other pages do not have this component.
   filter.addEventListener("change", () => {
+    let visibleCount = 0;
     document.querySelectorAll("#book-table-body tr[data-status]").forEach((row) => {
       // Use the same casing for each option and its row's data-status.
       row.hidden = filter.value !== "all" && row.dataset.status !== filter.value;
+      if (!row.hidden) visibleCount += 1;
     });
+    const status = document.querySelector("#filter-status");
+    if (status) status.textContent = `${visibleCount} books shown.`;
   });
 }
 
 function initialiseGalleryModal() {
   const modal = document.querySelector("#gallery-modal");
   const covers = [...document.querySelectorAll(".gallery-item")];
-  if (!modal || covers.length === 0) return; // Empty starter gallery is intentional.
+  if (!modal || covers.length === 0) return; // An empty database has no covers.
   const image = modal.querySelector("#modal-image");
   const title = modal.querySelector("#gallery-modal-label");
   let currentIndex = 0;
@@ -53,6 +57,19 @@ function initialiseBookForm() {
   const status = form.querySelector("#image-status");
   let selectionVersion = 0;
 
+  // Match PHP's trimming and ISBN-shape checks before sending the request.
+  // Custom validity must be cleared as the user corrects a field.
+  const textFields = [...form.querySelectorAll('input[type="text"], textarea')];
+  function validateText(field) {
+    const text = field.value.trim();
+    field.setCustomValidity(field.required && !text ? "Enter a value, not just spaces." : "");
+    if (field.id === "isbn" && text &&
+        !/^(?:[0-9]{9}[0-9Xx]|[0-9]{13})$/.test(text.replace(/[ -]/g, ""))) {
+      field.setCustomValidity("Enter a 10- or 13-character ISBN.");
+    }
+  }
+  textFields.forEach((field) => field.addEventListener("input", () => validateText(field)));
+
   input.addEventListener("change", () => {
     // Ignore an older asynchronous read if another file is selected.
     const version = ++selectionVersion;
@@ -73,10 +90,10 @@ function initialiseBookForm() {
       status.textContent = "Unsupported file extension.";
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      input.setCustomValidity("Choose an image no larger than 5 MiB.");
+    if (file.size === 0 || file.size > 5 * 1024 * 1024) {
+      input.setCustomValidity("Choose a non-empty image no larger than 5 MiB.");
       input.classList.add("is-invalid");
-      status.textContent = "Image exceeds 5 MiB.";
+      status.textContent = "Image is empty or exceeds 5 MiB.";
       return;
     }
     const reader = new FileReader();
@@ -98,6 +115,7 @@ function initialiseBookForm() {
 
   form.addEventListener("submit", (event) => {
     // Permit valid forms to POST. PHP independently validates everything.
+    textFields.forEach(validateText);
     form.classList.add("was-validated");
     const message = form.querySelector("#form-status");
     if (!form.checkValidity()) {

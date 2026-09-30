@@ -5,6 +5,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: add.php', true, 303);
     exit;
 }
+// PHP discards both arrays when the entire request exceeds post_max_size.
+// Explain this before the ordinary required-field checks produce many errors.
+if (empty($_POST) && (int) ($_SERVER['CONTENT_LENGTH'] ?? 0) > 0) {
+    $_SESSION['form_errors'] = ['The request exceeded the server limit or contained no readable form data. Choose a smaller cover and try again.'];
+    unset($_SESSION['form_old']);
+    header('Location: add.php', true, 303);
+    exit;
+}
 // A successful POST redirects: refreshing the details page will not insert again.
 $errors = [];
 $values = [];

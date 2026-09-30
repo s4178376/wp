@@ -1,4 +1,8 @@
-# Integrate the database milestone
+# Integrate the coding handoff
+
+Start with docs/CODING-HANDOFF.md for the latest fixes and local check commands.
+The instructions below still apply. Use XAMPP's Terminal start/status commands
+from the handoff if its graphical Manager will not launch.
 
 This package upgrades the supplied starter, not your submitted a1.
 The homepage, catalogue, gallery and details now read the books table.

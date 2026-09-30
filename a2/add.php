@@ -46,8 +46,9 @@ require __DIR__ . '/includes/nav.inc';
       </div>
       <div class="col-12">
         <label class="form-label" for="isbn">ISBN</label>
-        <input class="form-control" type="text" id="isbn" name="isbn" value="<?= e($old['isbn'] ?? '') ?>" maxlength="20" required>
-        <div class="invalid-feedback">Enter a valid isbn.</div>
+        <input class="form-control" type="text" id="isbn" name="isbn" value="<?= e($old['isbn'] ?? '') ?>" maxlength="20" aria-describedby="isbn-help" required>
+        <div class="form-text" id="isbn-help">10 or 13 characters; spaces and hyphens are allowed.</div>
+        <div class="invalid-feedback">Enter an ISBN with 10 or 13 characters; only ISBN-10 may end in X.</div>
       </div>
       <div class="col-12">
         <label class="form-label" for="price">Price ($)</label>
@@ -57,7 +58,7 @@ require __DIR__ . '/includes/nav.inc';
       <div class="col-12">
         <label class="form-label" for="book_condition">Book Condition</label>
         <select class="form-select" id="book_condition" name="book_condition" required>
-          <option value="" disabled>Select book condition</option>
+          <option value="" disabled <?= empty($old['book_condition']) ? 'selected' : '' ?>>Select book condition</option>
           <option value="New" <?= ($old['book_condition'] ?? '') === 'New' ? 'selected' : '' ?>>New</option>
           <option value="Gently Used" <?= ($old['book_condition'] ?? '') === 'Gently Used' ? 'selected' : '' ?>>Gently Used</option>
           <option value="Fair" <?= ($old['book_condition'] ?? '') === 'Fair' ? 'selected' : '' ?>>Fair</option>
@@ -67,7 +68,7 @@ require __DIR__ . '/includes/nav.inc';
       <div class="col-12">
         <label class="form-label" for="status">Availability Status</label>
         <select class="form-select" id="status" name="status" required>
-          <option value="" disabled>Select availability status</option>
+          <option value="" disabled <?= empty($old['status']) ? 'selected' : '' ?>>Select availability status</option>
           <option value="Available" <?= ($old['status'] ?? '') === 'Available' ? 'selected' : '' ?>>Available</option>
           <option value="Reserved" <?= ($old['status'] ?? '') === 'Reserved' ? 'selected' : '' ?>>Reserved</option>
           <option value="Sold" <?= ($old['status'] ?? '') === 'Sold' ? 'selected' : '' ?>>Sold</option>
@@ -82,7 +83,8 @@ require __DIR__ . '/includes/nav.inc';
       <div class="col-12">
         <label class="form-label" for="image-path">Upload Cover Image</label>
         <input class="form-control" id="image-path" name="image_path" type="file"
-               accept=".jpg,.jpeg,.png,.gif,.webp" aria-describedby="image-feedback image-status" required>
+               accept=".jpg,.jpeg,.png,.gif,.webp" aria-describedby="image-help image-feedback image-status" required>
+        <div class="form-text" id="image-help">JPG, JPEG, PNG, GIF or WEBP. Maximum 5 MiB; your server may have a lower upload limit.</div>
         <div class="invalid-feedback" id="image-feedback">Choose a JPG, JPEG, PNG, GIF or WEBP image up to 5 MiB.</div>
         <p id="image-status" class="visually-hidden" aria-live="polite">No cover selected.</p>
         <img id="image-preview" class="image-preview" src="assets/images/favicon.svg" alt="Selected cover preview">

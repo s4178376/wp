@@ -1,5 +1,4 @@
-/* Starter additions: keep incomplete-feature notices clear and carousel text readable. */
-.starter-note { padding: 1rem; border-left: 4px solid #d97706; }
+/* Carousel captions stay white in both colour schemes. */
 #featured-carousel .carousel-caption,
 #featured-carousel .carousel-caption h1,
 #featured-carousel .carousel-caption h2 { color: #ffffff; }
@@ -98,7 +97,7 @@ main { flex: 1; }
 .badge-reserved { color: #fff; background: var(--secondary-dark); }
 .badge-sold { color: #fff; background: var(--accent-slate); }
 
-/* The responsive wrapper in books.html adds horizontal scrolling on narrow screens. */
+/* The responsive wrapper in books.php adds horizontal scrolling on narrow screens. */
 .books-table { margin-bottom: 0; color: var(--text-dark); }
 .books-table > :not(caption) > * > * { padding: 1rem; background: var(--surface); border-color: var(--border); }
 .filter-panel { padding: 1rem; margin-bottom: 1.5rem; }
@@ -135,6 +134,7 @@ main { flex: 1; }
 .form-label { font-weight: 600; }
 .form-control, .form-select { color: var(--text-dark); background-color: var(--surface); border-color: var(--border); }
 .form-control::placeholder { color: var(--text-light); }
+.form-text { color: var(--text-light); }
 /* JavaScript adds is-visible only after FileReader has produced a valid preview. */
 .image-preview { display: none; max-width: 220px; max-height: 280px; margin-top: 1rem; border: 2px solid var(--border); border-radius: 0.5rem; }
 .image-preview.is-visible { display: block; }
@@ -194,12 +194,22 @@ main { flex: 1; }
   }
 
   .form-control,
+  .form-control:focus,
   .form-select,
+  .form-select:focus,
   .books-table > :not(caption) > * > * {
     color: #f1f5f9;
     background-color: #0f172a;
     border-color: #334155;
   }
+
+  /* Bootstrap light defaults otherwise make these states hard to read. */
+  .form-select {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23f1f5f9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  }
+  .invalid-feedback { color: #fca5a5; }
+  .was-validated .form-control:invalid, .was-validated .form-select:invalid,
+  .form-control.is-invalid { border-color: #fca5a5; }
 }
 
 /* Bootstrap's md breakpoint: reduce large elements for phones and small tablets. */

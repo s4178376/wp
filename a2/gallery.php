@@ -24,7 +24,7 @@ require __DIR__ . '/includes/nav.inc';
         <button class="gallery-item" type="button" data-bs-toggle="modal" data-bs-target="#gallery-modal"
           data-image="<?= e(cover_url($book['image_path'])) ?>"
           data-title="<?= e($book['title'] . ' by ' . $book['author']) ?>">
-          <img src="<?= e(cover_url($book['image_path'])) ?>" alt="<?= e($book['title']) ?> cover">
+          <img src="<?= e(cover_url($book['image_path'])) ?>" alt="<?= e($book['title']) ?> cover" loading="lazy">
         </button>
       </div>
     <?php endforeach; ?>
@@ -39,7 +39,7 @@ require __DIR__ . '/includes/nav.inc';
         <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <img id="modal-image" src="assets/images/covers/1.png" alt="Selected book cover">
+        <img id="modal-image" src="assets/images/favicon.svg" alt="Selected book cover">
       </div>
       <div class="modal-footer">
         <button class="btn btn-warning" type="button" id="previous-cover">Previous</button>

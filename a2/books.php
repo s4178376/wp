@@ -29,6 +29,7 @@ require __DIR__ . '/includes/nav.inc';
           <option value="<?= e($item['status']) ?>"><?= e($item['status']) ?></option>
         <?php endforeach; ?>
       </select>
+      <p id="filter-status" class="visually-hidden" role="status" aria-live="polite"></p>
     </div>
     <div class="table-responsive content-panel rounded">
       <table class="table books-table align-middle">

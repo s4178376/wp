@@ -46,6 +46,9 @@ try {
         $config['password'], $config['database'], (int) $config['port']);
     mysqli_set_charset($connection, 'utf8mb4');
 } catch (Throwable $exception) {
+    // Charset setup can fail after connecting: never let a page use that connection.
+    if ($connection !== null && $connection !== false) mysqli_close($connection);
+    $connection = null;
     error_log('BookVerse connection failed: ' . $exception->getMessage());
     http_response_code(503);
     // Pages escape this text with e() before displaying it.
