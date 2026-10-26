@@ -1,0 +1,6 @@
+/includes/config.private.php
+.env
+.DS_Store
+*.log
+/assets/images/covers/*
+!/assets/images/covers/.htaccess
