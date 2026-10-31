@@ -11,29 +11,49 @@ AI tool chatgpt used to create README and START-HERE, as writing them up is anno
 
 | Date | Activity | Result | Commit |
 24th October - 26th October, creating the initial website and the associations (Mysql ect). Had to redo some parts due to Jacob5 being down as I now have to local develop before using MyDesktop.
+26th - 28th October was spent failing to get Jacob5 working through Mydesktop and figuring out how to get Register, login ect. working
 
 ## 2. Debugging records
 
-No bugs found yet
+### Bug — Login rejected some valid registered usernames
 
-### Bug [number] — [Short description] Copy / paste for each bug
-- **Template created**
-- **Date identified:** [Actual date]
-- **Date fixed:** [Actual date or unresolved]
-- **Affected files/environment:** [Local or Titan, file names]
-- **Symptom:** [What you observed, including the exact error]
-- **Reproduction steps:** [Steps that trigger the issue]
-- **Root cause:** [Confirmed cause; mark hypotheses as unconfirmed]
-- **Fix:** [Specific change and why it addresses the cause]
-- **Verification:** [Test steps and actual before/after results]
-- **Related commit:** [Actual hash and GitHub URL]
-- **Status:** [Open / fixed and verified]
+**Date identified:** 26 October 2026
+
+**Affected file:** `process_login.php`
+
+**Symptom:**  
+registration accepts usernames up to 50 characters, but login rejected usernames exceeding 50 bytes.
+
+**Reproduction steps:**
+1. Register with a username consisting of `é` repeated 30 times. This is because its an ASKII character
+2. Use a valid email and matching password.
+3. Log out.
+4. Attempt to log in using the same credentials.
+
+**Expected behaviour:**  
+The registered user can log in.
+
+**Root cause:**  
+PHP's `strlen()` counts bytes. The original login check limited usernames
+to 50 bytes, while the database supports 50 UTF-8 characters.
+
+**Fix:**  
+Changed the login input limit from 50 to 200 bytes, accommodating
+up to 50 UTF-8 characters at four bytes per character. 
+
+**Verification:**  
+50 characters of `é` caused the bug to occur
+**Related commit:**  
+[Add the actual commit link.]
+
+**Status:**  
+Code corrected; runtime verification pending.
 
 ### Debugging index
 
 | Record | Actual issue | Status | Commit |
 | --- | --- | --- | --- |
-| 1 | [Not recorded yet] | Pending | Pending |
+| 1 | Username / Character limit fail bug
 | 2 | [Not recorded yet] | Pending | Pending |
 | 3 | [Not recorded yet] | Pending | Pending |
 | 4 | [Not recorded yet] | Pending | Pending |
