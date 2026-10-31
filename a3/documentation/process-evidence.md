@@ -16,7 +16,7 @@ AI tool chatgpt used to create README and START-HERE, as writing them up is anno
 
 No bugs found yet
 
-### Bug [number] — [Short description]
+### Bug [number] — [Short description] Copy / paste for each bug
 - **Template created**
 - **Date identified:** [Actual date]
 - **Date fixed:** [Actual date or unresolved]
@@ -49,7 +49,7 @@ No bugs found yet
 
 **Task:** Prepare a partly implemented A3 codebase using the supplied assessment brief, rubric and SQL.
 
-**Prompt/input:** The assessment ZIP and marking rubric were supplied with a request for starting PHP/SQL files and a half-written codebase, initially without README or AI declarations.
+**Prompt/input:** The assessment ZIP and marking rubric were supplied with a request for starting PHP/SQL files
 
 **Output:** A separate `a3` package with shared PHP includes, database-backed browsing, search, seller pages, login/logout and session helpers. Registration and add/edit/delete forms and guarded handlers were scaffolded with TODOs rather than completed writes. A separate `local_setup.sql` uses `bookverse_a3` to isolate local A3 data from A2.
 
@@ -59,7 +59,7 @@ No bugs found yet
 
 **Validation reported by the assistant:** JavaScript syntax, static route/include references, cover decoding and ZIP integrity were checked. The original course SQL was preserved. The supplied sample password hash was checked against its documented password. PHP/MySQL execution and deployment were not tested by the assistant.
 
-**My validation:** [Record your own commands, browser tests and outcomes. Pending until performed.]
+**My validation:** works on local machine, Jacob5 innaccessible unless on Mydesktop makes it hard to validate outside of it.
 
 **Related commit:** [Add actual commit link]
 
@@ -71,17 +71,37 @@ No bugs found yet
 
 **Task:** Prepare base README and supporting files, with placement instructions.
 
-**Prompt/input:** “can you make a base readme and other files I told you not to and tell me where to put them”
+**Prompt/input:** “can you make a base readme and other files that are boring to create"
 
 **Output:** Starter README, process-evidence template and setup guide matching the partial A3 implementation. Incomplete features and unverified tests remain marked as such.
 
-**Accepted:** [Record which sections you used after review.]
+**Accepted:** Added in the after text myself
 
-**Rejected or modified:** [Record your edits and reasoning.]
+**Rejected or modified:** Modified afterwards to make easier
 
-**Validation:** [Compare these descriptions against your current code and actual test results.]
+**Validation:** Only text files, nothing to validate
 
 **Related commit:** [Add actual commit link]
+
+### AI use 3 — 
+
+**Date:** 26 October 2026
+
+**Tool:** ChatGPT (Codex Work mode)
+
+**Task/input:**
+
+**Output:** 
+
+**Accepted:** 
+
+**Rejected or modified:** [Record my changes, if any.]
+
+**Assistant validation:** 
+
+**My validation:** 
+
+**Related commit:** [Add the real link after committing.]
 
 ### Template for the next meaningful AI interaction
 

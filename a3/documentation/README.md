@@ -18,7 +18,7 @@
 
 BookVerse is a PHP and MySQL book-listing website. Assessment 3 extends the earlier website with user accounts, seller profiles, keyword search and ownership-based book management.
 
-The current package is a partially implemented starter. Reading and authentication code is present; registration and book-changing handlers are deliberately unfinished. Their forms display explanatory feedback rather than writing data.
+The current package is a partially implemented starter. Reading, login/logout and registration code is present. Book-changing handlers are deliberately unfinished; their forms display explanatory feedback rather than writing data.
 
 ## Current implementation
 
@@ -31,7 +31,7 @@ The current package is a partially implemented starter. Reading and authenticati
 | Search across title, author and description | Implemented; runtime verification pending |
 | Login, logout, sessions and flash feedback | Implemented; runtime verification pending |
 | Login and ownership guards | Implemented; two-account testing pending |
-| Registration | Form and handler scaffold; no account insertion yet |
+| Registration | Server validation, duplicate handling, bcrypt insertion and automatic login implemented; local runtime verification pending |
 | Add Book | Form and protected handler scaffold; no upload or insertion yet |
 | Edit Book | Owner check and prefilled form; no update or cover replacement yet |
 | Delete Book | Owner-only button, modal and protected handler; no deletion yet |
@@ -46,7 +46,8 @@ The current package is a partially implemented starter. Reading and authenticati
 | `login.php`, `register.php`, `logout.php` | Account interface and logout |
 | `add.php`, `edit.php` | Protected book forms |
 | `process_login.php` | Login processing |
-| `process_register.php`, `process_add.php`, `process_edit.php`, `process_delete.php` | Unfinished write handlers |
+| `process_register.php` | Registration validation, prepared account insertion and automatic login |
+| `process_add.php`, `process_edit.php`, `process_delete.php` | Unfinished book write handlers |
 | `includes/bootstrap.inc` | Shared initialisation and ownership guard |
 | `includes/session.inc` | Session, CSRF, authentication and flash helpers |
 | `includes/db_connect.inc` | Automatic local/live database configuration |
@@ -90,7 +91,7 @@ Database credentials are configured through `includes/config.private.php` or env
 - Server-side ownership checks protect edit/delete routes; hiding buttons alone is insufficient.
 - A named A3 session separates its authentication from the earlier project.
 - Login uses `password_verify()` and regenerates the session ID on success.
-- Registration still needs `password_hash()` and a prepared INSERT. The supplied password column is `CHAR(60)`; the scaffold notes bcrypt for compatibility.
+- Registration uses `password_hash()` with `PASSWORD_BCRYPT`, fitting the supplied `CHAR(60)` column. Passwords require at least eight characters and at most 72 bytes to avoid bcrypt truncation. Duplicate username/email checks use prepared queries and the database UNIQUE constraints. Only non-password form values are retained after errors.
 - POST actions check CSRF tokens and redirect with session feedback.
 - Search binds the keyword and escapes LIKE wildcards for literal matching.
 - The catalogue filter uses `data-status`; the supplied SQL statuses are Available, Reserved and Sold.
@@ -115,7 +116,7 @@ The starter-generation checks covered JavaScript syntax, static route/include re
 | Flash feedback | Message displays once | Pending |
 | Anonymous routes | Add/edit/delete require login | Pending |
 | Two-account ownership | Non-owner cannot edit/delete another user's book | Pending |
-| Registration | Hashed account inserted and automatically logged in | Not implemented |
+| Registration | Hashed account inserted and automatically logged in; duplicate/invalid inputs rejected | Implemented; runtime test pending |
 | Add/upload | Record and image saved with session owner ID | Not implemented |
 | Edit | Fields update; optional cover replacement cleans old file | Not implemented |
 | Delete | Confirmation, owned record and image removed | Not implemented |
@@ -155,7 +156,7 @@ Other AI tools used: [List actual tools, or state none.]
 
 ## Known limitations and remaining work
 
-- Registration, insertion/uploads, updates and deletion are not implemented yet.
+- Book insertion/uploads, updates and deletion are not implemented yet. Registration is implemented but needs local runtime testing.
 - The supplied sample accounts are development fixtures, not production credentials.
 - PHP/MySQL execution, browser behaviour and A3 deployment have not been verified here.
 - Final screenshot matching, validation and authentication/authorization testing remain.

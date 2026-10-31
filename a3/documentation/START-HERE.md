@@ -35,7 +35,7 @@ The supplied sample login is `john_reader` with password `password123`. These ar
 
 Check the homepage, catalogue, gallery, details, search and seller links. Test login/logout and confirm owner controls appear only for books owned by that account.
 
-Registration and add/edit/delete processing intentionally stop with an explanatory message. They do not currently change records or upload images.
+Registration now creates a user and automatically logs them in. Test it locally with a new username/email. Add/edit/delete processing still stops with an explanatory message and does not change book records or upload images.
 
 PHP syntax check from your Mac:
 
@@ -49,7 +49,7 @@ Record the actual results, not an assumed pass.
 
 ## 5. Suggested development order
 
-1. Implement registration validation, bcrypt password hashing, prepared INSERT and automatic login.
+1. Test registration: create an account, log out/in, try duplicate details and mismatched passwords, and confirm the database stores a hash.
 2. Implement Add Book validation, verified uploads and owner-linked insertion.
 3. Implement owner-only editing, keeping the existing cover unless replaced.
 4. Implement owner-only deletion and safe image cleanup.

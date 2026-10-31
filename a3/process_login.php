@@ -4,7 +4,8 @@ require_post_token();
 if (is_logged_in()) redirect_to('index.php');
 $username = is_string($_POST['username'] ?? null) ? trim($_POST['username']) : '';
 $password = is_string($_POST['password'] ?? null) ? $_POST['password'] : '';
-if ($username === '' || strlen($username) > 50 || $password === '' || strlen($password) > 4096) {
+// VARCHAR(50) allows 50 UTF-8 characters, which can occupy up to 200 bytes.
+if ($username === '' || strlen($username) > 200 || $password === '' || strlen($password) > 4096) {
     flash('Enter your username and password.', 'danger');
     redirect_to('login.php');
 }
