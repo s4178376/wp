@@ -11,49 +11,29 @@ AI tool chatgpt used to create README and START-HERE, as writing them up is anno
 
 | Date | Activity | Result | Commit |
 24th October - 26th October, creating the initial website and the associations (Mysql ect). Had to redo some parts due to Jacob5 being down as I now have to local develop before using MyDesktop.
-26th - 28th October was spent failing to get Jacob5 working through Mydesktop and figuring out how to get Register, login ect. working
 
 ## 2. Debugging records
 
-### Bug — Login rejected some valid registered usernames
+No bugs found yet
 
-**Date identified:** 26 October 2026
-
-**Affected file:** `process_login.php`
-
-**Symptom:**  
-registration accepts usernames up to 50 characters, but login rejected usernames exceeding 50 bytes.
-
-**Reproduction steps:**
-1. Register with a username consisting of `é` repeated 30 times. This is because its an ASKII character
-2. Use a valid email and matching password.
-3. Log out.
-4. Attempt to log in using the same credentials.
-
-**Expected behaviour:**  
-The registered user can log in.
-
-**Root cause:**  
-PHP's `strlen()` counts bytes. The original login check limited usernames
-to 50 bytes, while the database supports 50 UTF-8 characters.
-
-**Fix:**  
-Changed the login input limit from 50 to 200 bytes, accommodating
-up to 50 UTF-8 characters at four bytes per character. 
-
-**Verification:**  
-50 characters of `é` caused the bug to occur
-**Related commit:**  
-[Add the actual commit link.]
-
-**Status:**  
-Code corrected; runtime verification pending.
+### Bug [number] — [Short description]
+- **Template created**
+- **Date identified:** [Actual date]
+- **Date fixed:** [Actual date or unresolved]
+- **Affected files/environment:** [Local or Titan, file names]
+- **Symptom:** [What you observed, including the exact error]
+- **Reproduction steps:** [Steps that trigger the issue]
+- **Root cause:** [Confirmed cause; mark hypotheses as unconfirmed]
+- **Fix:** [Specific change and why it addresses the cause]
+- **Verification:** [Test steps and actual before/after results]
+- **Related commit:** [Actual hash and GitHub URL]
+- **Status:** [Open / fixed and verified]
 
 ### Debugging index
 
 | Record | Actual issue | Status | Commit |
 | --- | --- | --- | --- |
-| 1 | Username / Character limit fail bug
+| 1 | [Not recorded yet] | Pending | Pending |
 | 2 | [Not recorded yet] | Pending | Pending |
 | 3 | [Not recorded yet] | Pending | Pending |
 | 4 | [Not recorded yet] | Pending | Pending |
@@ -69,7 +49,7 @@ Code corrected; runtime verification pending.
 
 **Task:** Prepare a partly implemented A3 codebase using the supplied assessment brief, rubric and SQL.
 
-**Prompt/input:** The assessment ZIP and marking rubric were supplied with a request for starting PHP/SQL files
+**Prompt/input:** The assessment ZIP and marking rubric were supplied with a request for starting PHP/SQL files and a half-written codebase, initially without README or AI declarations.
 
 **Output:** A separate `a3` package with shared PHP includes, database-backed browsing, search, seller pages, login/logout and session helpers. Registration and add/edit/delete forms and guarded handlers were scaffolded with TODOs rather than completed writes. A separate `local_setup.sql` uses `bookverse_a3` to isolate local A3 data from A2.
 
@@ -79,7 +59,7 @@ Code corrected; runtime verification pending.
 
 **Validation reported by the assistant:** JavaScript syntax, static route/include references, cover decoding and ZIP integrity were checked. The original course SQL was preserved. The supplied sample password hash was checked against its documented password. PHP/MySQL execution and deployment were not tested by the assistant.
 
-**My validation:** works on local machine, Jacob5 innaccessible unless on Mydesktop makes it hard to validate outside of it.
+**My validation:** [Record your own commands, browser tests and outcomes. Pending until performed.]
 
 **Related commit:** [Add actual commit link]
 
@@ -91,35 +71,35 @@ Code corrected; runtime verification pending.
 
 **Task:** Prepare base README and supporting files, with placement instructions.
 
-**Prompt/input:** “can you make a base readme and other files that are boring to create"
+**Prompt/input:** “can you make a base readme and other files I told you not to and tell me where to put them”
 
 **Output:** Starter README, process-evidence template and setup guide matching the partial A3 implementation. Incomplete features and unverified tests remain marked as such.
 
-**Accepted:** Added in the after text myself
+**Accepted:** [Record which sections you used after review.]
 
-**Rejected or modified:** Modified afterwards to make easier
+**Rejected or modified:** [Record your edits and reasoning.]
 
-**Validation:** Only text files, nothing to validate
+**Validation:** [Compare these descriptions against your current code and actual test results.]
 
 **Related commit:** [Add actual commit link]
 
-### AI use 3 — 
+### AI use 3 — Registration implementation
 
 **Date:** 26 October 2026
 
 **Tool:** ChatGPT (Codex Work mode)
 
-**Task/input:**
+**Task/input:** I supplied my current `a3.zip` after agreeing to complete registration and asked that my edited documentation remain the baseline.
 
-**Output:** 
+**Output:** Registration now validates fields on the server, checks duplicate username/email values, hashes passwords with bcrypt, inserts using a prepared statement and automatically logs in the new account. Non-password values are retained on errors. The login input byte limit was aligned with the schema's 50-character UTF-8 usernames. Add/edit/delete remain unfinished.
 
-**Accepted:** 
+**Accepted:** [Record what I integrated and reviewed.]
 
 **Rejected or modified:** [Record my changes, if any.]
 
-**Assistant validation:** 
+**Assistant validation:** Static review checked form/handler field matching, retained-value escaping, session/CSRF handling and prepared SQL against the supplied schema. Package integrity was checked. PHP and MySQL were unavailable in the assistant environment, so no PHP syntax, database execution or browser tests are claimed.
 
-**My validation:** 
+**My validation:** Pending. Test successful registration/automatic login, logout and subsequent login, duplicate username/email, mismatched or short passwords, oversized inputs and database-unavailable feedback. Confirm passwords are hashed and are never repopulated in the form.
 
 **Related commit:** [Add the real link after committing.]
 
