@@ -1,4 +1,8 @@
 <?php
+/*
+ * Add handler: validate text and real uploaded image bytes before inserting a book.
+ * Use the authenticated session for ownership, and remove a new cover if insertion fails.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 require_login();
 // PHP discards POST and FILES when post_max_size is exceeded, including the token.

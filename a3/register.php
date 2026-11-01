@@ -1,13 +1,19 @@
 <?php
+/*
+ * Registration screen: restore non-password fields after a rejected submission.
+ * Passwords are never put back into HTML or retained as form drafts in the session.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 if (is_logged_in()) redirect_to('index.php');
 // Consume retained text once; passwords are never stored or repopulated.
 $values = $_SESSION['registration_values'] ?? [];
 unset($_SESSION['registration_values']);
 $pageTitle = 'BookVerse | Register';
+// Queries, authentication and redirects run before the shared header prints HTML.
 require __DIR__ . '/includes/header.inc';
 require __DIR__ . '/includes/nav.inc';
 ?>
+<!-- Main landmark: page-specific content follows the shared navigation. -->
 <main class="container page-wrap" id="main-content">
   <div class="form-panel-wrap"><h1>Create an Account</h1>
     <p>Create an account to manage your book listings. Phone, location and About You are optional.</p>

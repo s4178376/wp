@@ -1,5 +1,11 @@
+<!--
+Shared Add/Edit form: caller sets $old, $isEdit and $formAction.
+Text is escaped at output; a replacement cover is optional only when editing.
+novalidate disables native popups so scripts.js can display Bootstrap feedback.
+-->
     <form id="add-book-form" class="row g-3 content-panel form-panel rounded"
           action="<?= e($formAction) ?>" method="post" enctype="multipart/form-data" novalidate>
+      <!-- The token binds this submission to the current session; PHP verifies it. -->
       <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
       <?php if ($isEdit): ?><input type="hidden" name="book_id" value="<?= e($book['book_id']) ?>"><?php endif; ?>
       <div class="col-12">
@@ -58,6 +64,7 @@
         <textarea class="form-control" id="description" name="description" rows="4" maxlength="10000" required><?= e($old['description'] ?? '') ?></textarea>
         <div class="invalid-feedback">Enter a description.</div>
       </div>
+      <!-- multipart/form-data sends the file in $_FILES, separate from text in $_POST. -->
       <div class="col-12">
         <label class="form-label" for="image-path">Upload Cover Image</label>
         <input class="form-control" id="image-path" name="image_path" type="file"

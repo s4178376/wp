@@ -1,4 +1,8 @@
 <?php
+/*
+ * Details: validate the requested ID, load one book and display its seller.
+ * Owner-only buttons are a convenience; the POST handlers independently enforce ownership.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 $id = positive_id($_GET['id'] ?? null);
 if (!$id) show_error(400, 'Choose a valid book.');
@@ -10,9 +14,11 @@ try {
 if (!$rows) show_error(404, 'Book not found.');
 $book = $rows[0];
 $pageTitle = 'BookVerse | ' . $book['title'];
+// Queries, authentication and redirects run before the shared header prints HTML.
 require __DIR__ . '/includes/header.inc';
 require __DIR__ . '/includes/nav.inc';
 ?>
+<!-- Main landmark: page-specific content follows the shared navigation. -->
 <main class="container page-wrap" id="main-content">
   <article class="row g-4">
     <div class="col-md-4"><img class="img-fluid rounded detail-cover" src="<?= e(cover_url($book['image_path'])) ?>" alt="<?= e($book['title']) ?> cover"></div>

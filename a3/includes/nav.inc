@@ -1,4 +1,8 @@
 <?php
+/*
+ * Shared responsive navigation: public links are always available.
+ * Account links depend on session state; logout submits a protected POST form.
+ */
 $activePage = $activePage ?? '';
 $links = ['index.php' => 'Home', 'books.php' => 'Browse Books', 'gallery.php' => 'Gallery'];
 ?>

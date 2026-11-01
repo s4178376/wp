@@ -1,4 +1,8 @@
 <?php
+/*
+ * Edit handler: validate input and optionally replace a cover under a generated filename.
+ * A row lock protects the ownership recheck and update; old-image cleanup follows commit.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 require_login();
 // PHP can discard the whole form, including the token and book ID, for oversized POSTs.

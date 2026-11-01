@@ -1,11 +1,17 @@
 <?php
+/*
+ * Login handler: check input, fetch the stored hash, verify it and rotate session identity.
+ * Use the same generic failure message for an unknown username and a wrong password.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 require_post_token();
 if (is_logged_in()) redirect_to('index.php');
 $username = is_string($_POST['username'] ?? null) ? trim($_POST['username']) : '';
 $password = is_string($_POST['password'] ?? null) ? $_POST['password'] : '';
+// Reject passwords beyond bcrypt's 72-byte boundary; extra bytes must not be ignored.
 // VARCHAR(50) allows 50 UTF-8 characters, which can occupy up to 200 bytes.
-if ($username === '' || strlen($username) > 200 || $password === '' || strlen($password) > 4096) {
+if ($username === '' || strlen($username) > 200 || $password === '' || strlen($password) > 72 ||
+    strpos($password, "\0") !== false || preg_match('//u', $password) !== 1) {
     flash('Enter your username and password.', 'danger');
     redirect_to('login.php');
 }

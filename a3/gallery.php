@@ -1,4 +1,8 @@
 <?php
+/*
+ * Gallery: fetch cover metadata and render buttons for one shared Bootstrap modal.
+ * Escaped data attributes supply the image URL and title to the external JavaScript.
+ */
 $pageTitle = 'BookVerse | Cover Gallery';
 $activePage = 'gallery.php';
 require_once __DIR__ . '/includes/bootstrap.inc';
@@ -10,9 +14,11 @@ if ($connection !== null) {
         $dbError = report_query_failure($exception);
     }
 }
+// Queries, authentication and redirects run before the shared header prints HTML.
 require __DIR__ . '/includes/header.inc';
 require __DIR__ . '/includes/nav.inc';
 ?>
+<!-- Main landmark: page-specific content follows the shared navigation. -->
 <main class="container page-wrap" id="main-content">
   <h1>Book Cover Gallery</h1>
   <?php if ($dbError): ?><p class="alert alert-danger" role="alert"><?= e($dbError) ?></p>

@@ -1,4 +1,8 @@
 <?php
+/*
+ * Registration handler: validate input, reject duplicate details and insert a bcrypt hash.
+ * Database UNIQUE constraints protect against simultaneous registrations with the same details.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 require_post_token();
 if (is_logged_in()) redirect_to('index.php');

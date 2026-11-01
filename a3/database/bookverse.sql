@@ -1,3 +1,6 @@
+-- Database seed script: users are created before books because books references users.
+-- Sample password hashes are development fixtures; registration creates new hashes.
+-- WARNING: this supplied script drops existing tables. Back up data before use.
 -- Create the BookVerse database (only for localdevelopment)
 CREATE DATABASE IF NOT EXISTS bookverse
 DEFAULT CHARACTER SET utf8mb4
@@ -8,6 +11,7 @@ USE bookverse;
 DROP TABLE IF EXISTS books;
 -- Users table
 DROP TABLE IF EXISTS users;
+-- UNIQUE username/email prevent duplicate accounts; the password column holds a hash.
 CREATE TABLE users
 (
     user_id     INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,6 +25,7 @@ CREATE TABLE users
 ) ENGINE=InnoDB;
 
 -- Books table with user relationship
+-- Nullable user_id preserves books if a seller is deleted (ON DELETE SET NULL).
 CREATE TABLE IF NOT EXISTS books
 (
     book_id          INT AUTO_INCREMENT PRIMARY KEY,

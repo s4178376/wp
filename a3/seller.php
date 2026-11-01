@@ -1,4 +1,8 @@
 <?php
+/*
+ * Public seller profile: look up a user by ID and list only that user's books.
+ * The query deliberately excludes private fields such as email and password hash.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 $id = positive_id($_GET['id'] ?? null);
 if (!$id) show_error(400, 'Choose a valid seller.');
@@ -12,9 +16,11 @@ try {
         ORDER BY b.created_at DESC, b.book_id DESC', 'i', [$id]);
 } catch (Throwable $error) { show_error(503, report_query_failure($error)); }
 $pageTitle = 'BookVerse | Seller: ' . $seller['username'];
+// Queries, authentication and redirects run before the shared header prints HTML.
 require __DIR__ . '/includes/header.inc';
 require __DIR__ . '/includes/nav.inc';
 ?>
+<!-- Main landmark: page-specific content follows the shared navigation. -->
 <main class="container page-wrap" id="main-content">
   <h1><?= e($seller['username']) ?></h1>
   <p><?= e($seller['location']) ?></p>

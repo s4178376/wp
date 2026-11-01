@@ -15,6 +15,7 @@ AI tool chatgpt used to create README and START-HERE, as writing them up is anno
 1st November: Added edit.php and process_edit php, bug fixing (incomplete)
 1st November: process-evidence updates. details.php has been completed and the form submission working properly. Process-delete added, including
 the ability to delete books from the library
+added comments to the main repository
 
 ## 2. Debugging records
 
@@ -47,7 +48,6 @@ up to 50 UTF-8 characters at four bytes per character.
 **Verification:**  
 50 characters of `é` caused the bug to occur
 **Related commit:**  
-[Add the actual commit link.]
 
 **Status:**  
 Code corrected; runtime verification pending.
@@ -91,8 +91,8 @@ Code corrected; runtime verification pending.
 | Record | Actual issue | Status | Commit |
 | --- | --- | --- | --- |
 | 1 | Username / Character limit fail bug
-| 2 | price-validation mismatch between the browser form and PHP.
-| 3 | [Not recorded yet] | Pending | Pending |
+| 2 | price-validation mismatch between the browser form and PHP. (fixed)
+| 3 | Rejects passwords over 72 byte limit (fixed)
 | 4 | [Not recorded yet] | Pending | Pending |
 | 5 | [Not recorded yet] | Pending | Pending |
 

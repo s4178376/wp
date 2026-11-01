@@ -1,5 +1,9 @@
 <?php
 /*
+ * Database setup: choose local or live settings, then apply private/environment overrides.
+ * A failed connection remains null so pages can display controlled error feedback.
+ */
+/*
  * Automatic local/Coreteaching selection.
  * Local defaults match an unchanged XAMPP installation.
  * Override settings with environment variables or config.private.php.

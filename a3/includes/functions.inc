@@ -1,4 +1,8 @@
 <?php
+/*
+ * Shared rendering and query helpers. Escape data when outputting it, not before storage.
+ * The SELECT helper binds values separately from SQL and closes its statement in finally.
+ */
 // Escape database and user values at the point where they enter HTML.
 function e($value) {
     return htmlspecialchars((string) ($value ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');

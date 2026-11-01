@@ -1,4 +1,8 @@
 <?php
+/*
+ * Shared document opening: title, CSS, deferred scripts and one-time session feedback.
+ * Danger messages receive keyboard focus through scripts.js after a validation redirect.
+ */
 // Each page sets its own title before loading this shared document opening.
 $pageTitle = $pageTitle ?? 'BookVerse';
 $activePage = $activePage ?? '';
@@ -30,5 +34,5 @@ unset($_SESSION['flash']);
 if ($notice):
     $kind = in_array($notice['type'], ['success','danger','warning','info'], true) ? $notice['type'] : 'info';
 ?>
-<div class="container mt-3"><p class="alert alert-<?= e($kind) ?>" role="status"><?= e($notice['message']) ?></p></div>
+<div class="container mt-3"><p class="alert alert-<?= e($kind) ?>" role="<?= $kind === 'danger' ? 'alert' : 'status' ?>" <?= $kind === 'danger' ? 'id="server-errors" tabindex="-1"' : '' ?>><?= e($notice['message']) ?></p></div>
 <?php endif; ?>

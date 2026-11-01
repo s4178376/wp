@@ -1,4 +1,8 @@
 <?php
+/*
+ * Home page: query the newest four books, then reuse them in the carousel and cards.
+ * LEFT JOIN keeps books visible even if their seller account has been removed.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 $pageTitle = 'BookVerse | Home';
 $activePage = 'index.php';
@@ -10,9 +14,11 @@ if ($connection !== null) {
             ORDER BY b.created_at DESC, b.book_id DESC LIMIT 4');
     } catch (Throwable $error) { $dbError = report_query_failure($error); }
 }
+// Queries, authentication and redirects run before the shared header prints HTML.
 require __DIR__ . '/includes/header.inc';
 require __DIR__ . '/includes/nav.inc';
 ?>
+<!-- Main landmark: page-specific content follows the shared navigation. -->
 <main id="main-content">
   <h1 class="visually-hidden">BookVerse — discover your next book</h1>
   <?php if ($books): ?>

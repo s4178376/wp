@@ -1,6 +1,10 @@
+// Shared progressive enhancement: each initializer exits when its page component is absent.
+// JavaScript provides feedback and previews; PHP remains responsible for validation and writes.
 "use strict";
 
 // defer in header.inc ensures the HTML is parsed before these run.
+// Server feedback is outside the form; focus it on any page after a redirect.
+document.querySelector('#server-errors')?.focus();
 initialiseBookFilter();
 initialiseGalleryModal();
 initialiseBookForm();
@@ -8,7 +12,7 @@ initialiseBookForm();
 function initialiseBookFilter() {
   const filter = document.querySelector("#status-filter");
   if (!filter) return; // Other pages do not have this component.
-  filter.addEventListener("change", () => {
+  function applyFilter() {
     let visibleCount = 0;
     document.querySelectorAll("#book-table-body tr[data-status]").forEach((row) => {
       // Use the same casing for each option and its row's data-status.
@@ -17,7 +21,11 @@ function initialiseBookFilter() {
     });
     const status = document.querySelector("#filter-status");
     if (status) status.textContent = `${visibleCount} books shown.`;
-  });
+  }
+  filter.addEventListener("change", applyFilter);
+  // Browsers can restore a select value on reload or when navigating Back.
+  window.addEventListener("pageshow", applyFilter);
+  applyFilter();
 }
 
 function initialiseGalleryModal() {
@@ -51,7 +59,6 @@ function initialiseGalleryModal() {
 function initialiseBookForm() {
   const form = document.querySelector("#add-book-form");
   if (!form) return;
-  document.querySelector("#server-errors")?.focus();
   const input = form.querySelector("#image-path");
   const preview = form.querySelector("#image-preview");
   const status = form.querySelector("#image-status");

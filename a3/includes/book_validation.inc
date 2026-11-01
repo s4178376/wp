@@ -1,4 +1,8 @@
 <?php
+/*
+ * Shared Add/Edit validation returns safe form values plus a list of errors.
+ * Image validation checks upload origin, actual size, extension, MIME and image metadata.
+ */
 // Shared server validation for book forms.
 // Browser checks can be bypassed, so PHP checks every field again.
 function validate_book_fields($input) {

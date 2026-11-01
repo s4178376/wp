@@ -1,4 +1,8 @@
 <?php
+/*
+ * Catalogue: load books and the available status values from the database.
+ * JavaScript filters the rendered rows; it does not delete or change database records.
+ */
 require_once __DIR__ . '/includes/bootstrap.inc';
 $pageTitle = 'BookVerse | Browse Books';
 $activePage = 'books.php';
@@ -12,9 +16,11 @@ if ($connection !== null) {
         $dbError = report_query_failure($exception);
     }
 }
+// Queries, authentication and redirects run before the shared header prints HTML.
 require __DIR__ . '/includes/header.inc';
 require __DIR__ . '/includes/nav.inc';
 ?>
+<!-- Main landmark: page-specific content follows the shared navigation. -->
 <main class="container page-wrap" id="main-content">
   <h1>All Books</h1>
   <?php if ($dbError): ?>

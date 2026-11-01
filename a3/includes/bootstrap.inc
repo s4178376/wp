@@ -1,4 +1,8 @@
 <?php
+/*
+ * Request bootstrap: load common helpers, session state and database connection once.
+ * Error and ownership helpers stop execution when a request cannot safely continue.
+ */
 // All pages start here, before any HTML or redirects are sent.
 require_once __DIR__ . '/functions.inc';
 require_once __DIR__ . '/session.inc';

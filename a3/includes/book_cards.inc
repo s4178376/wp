@@ -1,3 +1,7 @@
+<!--
+Reusable responsive card grid. The caller provides prepared-query results in $books.
+Each card links to the book details and its public seller profile.
+-->
 <!-- Caller supplies $books from a prepared SELECT, including seller_name and user_id. -->
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
   <?php foreach ($books as $book): ?>

@@ -1,4 +1,8 @@
 <?php
+/*
+ * Configuration example only: copy to config.private.php for personal settings.
+ * Never place real credentials in this example or commit the private configuration.
+ */
 // Copy to config.private.php ONLY if overriding local defaults or configuring Titan.
 // config.private.php is ignored by Git. Fill it in privately on each server.
 return [

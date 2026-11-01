@@ -1,4 +1,8 @@
 <?php
+/*
+ * Delete handler: require POST, CSRF and ownership before deleting a locked book row.
+ * File cleanup follows database commit and preserves images still used by another book.
+ */
 require __DIR__ . '/includes/bootstrap.inc';
 require_login();
 require_post_token();

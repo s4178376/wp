@@ -1,3 +1,5 @@
+/* Shared BookVerse styling layered over Bootstrap.
+   Default rules implement light mode; media queries override colours, size and motion. */
 /* Carousel captions stay white in both colour schemes. */
 #featured-carousel .carousel-caption,
 #featured-carousel .carousel-caption h1,
@@ -241,3 +243,8 @@ main { flex: 1; }
 
 /* Existing cover in the edit form. */
 .current-cover { max-width: 180px; max-height: 240px; object-fit: contain; }
+
+/* Bootstrap's default close icon is black; invert it on the dark delete dialog. */
+@media (prefers-color-scheme: dark) {
+  #delete-modal .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+}

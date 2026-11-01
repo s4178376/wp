@@ -1,3 +1,6 @@
+-- Database seed script: users are created before books because books references users.
+-- Sample password hashes are development fixtures; registration creates new hashes.
+-- Run once against a fresh local A3 setup; repeated seed imports may violate UNIQUE keys.
 -- A3 ONLY: import once into a fresh local bookverse_a3 database.
 -- No A2 tables are dropped. Original course SQL remains in bookverse.sql.
 -- Create the BookVerse database (only for localdevelopment)
@@ -11,6 +14,7 @@ USE bookverse_a3;
 
 -- Users table
 
+-- UNIQUE username/email prevent duplicate accounts; the password column holds a hash.
 CREATE TABLE users
 (
     user_id     INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,6 +28,7 @@ CREATE TABLE users
 ) ENGINE=InnoDB;
 
 -- Books table with user relationship
+-- Nullable user_id preserves books if a seller is deleted (ON DELETE SET NULL).
 CREATE TABLE IF NOT EXISTS books
 (
     book_id          INT AUTO_INCREMENT PRIMARY KEY,
