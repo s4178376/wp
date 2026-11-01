@@ -92,8 +92,8 @@ Code corrected; runtime verification pending.
 | --- | --- | --- | --- |
 | 1 | Username / Character limit fail bug
 | 2 | price-validation mismatch between the browser form and PHP. (fixed)
-| 3 | Rejects passwords over 72 byte limit (fixed)
-| 4 | [Not recorded yet] | Pending | Pending |
+| 3 | Rejects passwords over 72 byte limit (left due to 72 byte being a large limit)
+| 4 | Books unable to be added with a cover page (fixed)
 | 5 | [Not recorded yet] | Pending | Pending |
 
 ## 3. AI usage records
@@ -159,6 +159,75 @@ Code corrected; runtime verification pending.
 **My validation:** 
 
 **Related commit:** [Add the real link after committing.]
+
+### AI use 4 — Book upload issue diagnoses
+
+**Date:** 1 November 2026
+
+**Tool:** ChatGPT-6 Astra
+
+**Task:** Diagnose and repair this error in phpmyadmin / XAMPP running on VSCode: ethnightingale@Mac a3 % ls -ld /Applications/XAMPP/xamppfiles/htdocs/wp/a3/assets/images/covers
+drwxr-xr-x@ 16 sethnightingale  staff  512 Nov  1 21:06 /Applications/XAMPP/xamppfiles/htdocs/wp/a3/assets/images/covers
+sethnightingale@Mac a3 % sudo tail -n 40 /Applications/XAMPP/xamppfiles/logs/error_log
+Password:
+[Fri Oct 02 07:33:38.561722 2026] [mpm_prefork:notice] [pid 30622] AH00169: caught SIGTERM, shutting down
+[Fri Oct 02 07:44:30.701296 2026] [ssl:warn] [pid 31495] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Oct 02 07:44:30.701660 2026] [ssl:warn] [pid 31495] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Oct 02 07:44:30.936486 2026] [ssl:warn] [pid 31496] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Oct 02 07:44:30.936514 2026] [ssl:warn] [pid 31496] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Oct 02 07:44:30.936688 2026] [lbmethod_heartbeat:notice] [pid 31496] AH02282: No slotmem from mod_heartmonitor
+[Fri Oct 02 07:44:30.977427 2026] [mpm_prefork:notice] [pid 31496] AH00163: Apache/2.4.56 (Unix) OpenSSL/1.1.1t PHP/8.2.4 mod_perl/2.0.12 Perl/v5.34.1 configured -- resuming normal operations
+[Fri Oct 02 07:44:30.977485 2026] [core:notice] [pid 31496] AH00094: Command line: '/Applications/XAMPP/xamppfiles/bin/httpd -E /Applications/XAMPP/xamppfiles/logs/error_log -D SSL -D PHP'
+[Fri Oct 02 07:46:59.797036 2026] [mpm_prefork:notice] [pid 31496] AH00169: caught SIGTERM, shutting down
+[Fri Oct 02 07:48:28.770461 2026] [ssl:warn] [pid 32490] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Oct 02 07:48:28.770855 2026] [ssl:warn] [pid 32490] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Oct 02 07:48:29.002903 2026] [ssl:warn] [pid 32491] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Oct 02 07:48:29.003025 2026] [ssl:warn] [pid 32491] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Oct 02 07:48:29.003448 2026] [lbmethod_heartbeat:notice] [pid 32491] AH02282: No slotmem from mod_heartmonitor
+[Fri Oct 02 07:48:29.043654 2026] [mpm_prefork:notice] [pid 32491] AH00163: Apache/2.4.56 (Unix) OpenSSL/1.1.1t PHP/8.2.4 mod_perl/2.0.12 Perl/v5.34.1 configured -- resuming normal operations
+[Fri Oct 02 07:48:29.043699 2026] [core:notice] [pid 32491] AH00094: Command line: '/Applications/XAMPP/xamppfiles/bin/httpd -E /Applications/XAMPP/xamppfiles/logs/error_log -D SSL -D PHP'
+[Fri Oct 02 07:51:15.894770 2026] [mpm_prefork:notice] [pid 32491] AH00169: caught SIGTERM, shutting down
+[Fri Oct 09 15:36:21.531392 2026] [ssl:warn] [pid 40996] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Oct 09 15:36:21.531693 2026] [ssl:warn] [pid 40996] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Oct 09 15:36:21.770902 2026] [ssl:warn] [pid 41000] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Oct 09 15:36:21.770935 2026] [ssl:warn] [pid 41000] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Oct 09 15:36:21.771123 2026] [lbmethod_heartbeat:notice] [pid 41000] AH02282: No slotmem from mod_heartmonitor
+[Fri Oct 09 15:36:21.806085 2026] [mpm_prefork:notice] [pid 41000] AH00163: Apache/2.4.56 (Unix) OpenSSL/1.1.1t PHP/8.2.4 mod_perl/2.0.12 Perl/v5.34.1 configured -- resuming normal operations
+[Fri Oct 09 15:36:21.806138 2026] [core:notice] [pid 41000] AH00094: Command line: '/Applications/XAMPP/xamppfiles/bin/httpd -E /Applications/XAMPP/xamppfiles/logs/error_log -D SSL -D PHP'
+[Fri Oct 23 16:34:07.300849 2026] [mpm_prefork:notice] [pid 41000] AH00169: caught SIGTERM, shutting down
+[Fri Oct 23 18:37:18.574191 2026] [ssl:warn] [pid 57432] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Oct 23 18:37:18.574492 2026] [ssl:warn] [pid 57432] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Oct 23 18:37:18.815176 2026] [ssl:warn] [pid 57433] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Oct 23 18:37:18.815205 2026] [ssl:warn] [pid 57433] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Oct 23 18:37:18.815369 2026] [lbmethod_heartbeat:notice] [pid 57433] AH02282: No slotmem from mod_heartmonitor
+[Fri Oct 23 18:37:18.852215 2026] [mpm_prefork:notice] [pid 57433] AH00163: Apache/2.4.56 (Unix) OpenSSL/1.1.1t PHP/8.2.4 mod_perl/2.0.12 Perl/v5.34.1 configured -- resuming normal operations
+[Fri Oct 23 18:37:18.852259 2026] [core:notice] [pid 57433] AH00094: Command line: '/Applications/XAMPP/xamppfiles/bin/httpd -E /Applications/XAMPP/xamppfiles/logs/error_log -D SSL -D PHP'
+[Fri Oct 23 18:39:34.639509 2026] [mpm_prefork:notice] [pid 57433] AH00169: caught SIGTERM, shutting down
+[Sun Nov 01 22:45:38.208193 2026] [ssl:warn] [pid 74521] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 01 22:45:38.208522 2026] [ssl:warn] [pid 74521] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Nov 01 22:45:38.442640 2026] [ssl:warn] [pid 74522] AH01906: www.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 01 22:45:38.442668 2026] [ssl:warn] [pid 74522] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Nov 01 22:45:38.442856 2026] [lbmethod_heartbeat:notice] [pid 74522] AH02282: No slotmem from mod_heartmonitor
+[Sun Nov 01 22:45:38.485251 2026] [mpm_prefork:notice] [pid 74522] AH00163: Apache/2.4.56 (Unix) OpenSSL/1.1.1t PHP/8.2.4 mod_perl/2.0.12 Perl/v5.34.1 configured -- resuming normal operations
+[Sun Nov 01 22:45:38.485304 2026] [core:notice] [pid 74522] AH00094: Command line: '/Applications/XAMPP/xamppfiles/bin/httpd -E /Applications/XAMPP/xamppfiles/logs/error_log -D SSL -D PHP'
+sethnightingale@Mac a3 %
+
+**Prompt/input:** Added above
+
+**Output:** our covers folder is 755, so only your Mac user can write to it. That’s likely blocking Apache from saving uploads. The log you pasted doesn’t show the upload failure itself.
+
+For your local assignment setup, run this in VS Code:
+chmod 777 /Applications/XAMPP/xamppfiles/htdocs/wp/a3/assets/images/covers
+
+**Accepted:** This fixed it
+
+**Rejected or modified:** I accepted the fix
+
+**Validation reported by the assistant:** The issue is fixed
+
+**My validation:** works on local machine
+
+**Related commit:** [Add actual commit link]
 
 ### Template for the next meaningful AI interaction
 
