@@ -41,7 +41,7 @@ require __DIR__ . '/includes/nav.inc';
   <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content content-panel">
       <div class="modal-header"><h2 class="modal-title fs-5" id="delete-title">Delete book?</h2><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body"><p>Delete “<?= e($book['title']) ?>” and its cover?</p><p class="mb-0">Deletion is not enabled in this starter.</p></div>
+      <div class="modal-body"><p>Delete “<?= e($book['title']) ?>” and its cover?</p><p class="mb-0">This cannot be undone. A cover shared with another book will be kept.</p></div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
         <form action="process_delete.php" method="post">

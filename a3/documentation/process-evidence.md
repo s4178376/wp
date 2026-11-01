@@ -13,6 +13,8 @@ AI tool chatgpt used to create README and START-HERE, as writing them up is anno
 24th October - 26th October, creating the initial website and the associations (Mysql ect). Had to redo some parts due to Jacob5 being down as I now have to local develop before using MyDesktop.
 26th - 28th October was spent failing to get Jacob5 working through Mydesktop and figuring out how to get Register, login ect. working
 1st November: Added edit.php and process_edit php, bug fixing (incomplete)
+1st November: process-evidence updates. details.php has been completed and the form submission working properly. Process-delete added, including
+the ability to delete books from the library
 
 ## 2. Debugging records
 
