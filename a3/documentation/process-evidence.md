@@ -52,12 +52,46 @@ up to 50 UTF-8 characters at four bytes per character.
 **Status:**  
 Code corrected; runtime verification pending.
 
+### Bug — price-validation mismatch between the browser form and PHP.
+
+**Date identified:** 1St November 2026
+
+**Affected file:** book_validation / process_add.php
+
+**Symptom:**  
+The price field uses type="number" and step="0.01". A value such as 19.990 represents a valid price of $19.99, but the PHP validation rejects it because it contains three digits after the decimal point.
+
+**Reproduction steps:**
+1. Open Add Book and complete the fields with valid details.
+2. Enter 19.990 as the price.
+3. Select a valid cover and submit.
+4. Check whether the browser permits submission but PHP returns:Enter a price from $0.01 to $999,999.99 with at most two decimal places.
+5. Change the price to 19.99 and submit again.
+
+**Expected behaviour:**  
+This was not part of the expected behaviour and should have been stopped with a client side check
+
+**Root cause:**  
+book_validation.inc
+
+**Fix:**  
+Browser number validation checks the numeric value and step; includes/book_validation.inc checks the exact text using a regular expression that permits only one or two decimal digits. (?) 
+
+**Verification:**  
+Mismatch allowed to pass through without fail check
+
+**Related commit:**  
+[Add the actual commit link.]
+
+**Status:**  
+Code corrected; runtime verification pending.
+
 ### Debugging index
 
 | Record | Actual issue | Status | Commit |
 | --- | --- | --- | --- |
 | 1 | Username / Character limit fail bug
-| 2 | [Not recorded yet] | Pending | Pending |
+| 2 | price-validation mismatch between the browser form and PHP.
 | 3 | [Not recorded yet] | Pending | Pending |
 | 4 | [Not recorded yet] | Pending | Pending |
 | 5 | [Not recorded yet] | Pending | Pending |
@@ -108,19 +142,19 @@ Code corrected; runtime verification pending.
 
 ### AI use 3 — 
 
-**Date:** 26 October 2026
+**Date:** 1st November, 2026
 
-**Tool:** 
+**Tool:** Chatgpt in GPT-6 Astra
 
-**Task/input:**
+**Task/input:** Validate the files and look for bugs
 
-**Output:** 
+**Output:** Critical bug found - price-validation mismatch between the browser form and PHP.
 
-**Accepted:** 
+**Accepted:** I have accepted this as a bug and checked it manually
 
-**Rejected or modified:** [Record my changes, if any.]
+**Rejected or modified:** Started work on a bug fix
 
-**Assistant validation:** 
+**Assistant validation:**  
 
 **My validation:** 
 
